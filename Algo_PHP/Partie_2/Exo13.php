@@ -67,7 +67,7 @@
             echo "Le véhicule ".$this->short()." roule à ".$this->_vitesseActuelle."<br>";
 
         }
-        public function __toString()        // A function to show the infos of Voiture
+        public function Statut()        // A function to show the infos of Voiture
         {
             echo "<br><br>Infos véhicule ".$this->_selfid."
             <br>***********
@@ -102,7 +102,7 @@
     $v3->ralentir(20);
     $v3->demarrer();
     $v3->accelerer(200);
-    echo $v1;
-    echo $v2;
-    echo $v3;
+    $v1->Statut();
+    $v2->Statut();
+    $v3->Statut();
 ?>
