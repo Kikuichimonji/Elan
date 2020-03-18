@@ -1,5 +1,5 @@
 <?php
-$color = "white";
+    $color = "white";
     class piece{
         private $_couleur;
         private $_type;
