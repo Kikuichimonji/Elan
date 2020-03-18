@@ -19,7 +19,7 @@
         }
         public function short()
         {
-            return $this->short();
+            return $this->_marque." ".$this->_model;
         }
         public function demarrer()
         {
