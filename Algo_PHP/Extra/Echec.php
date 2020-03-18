@@ -17,29 +17,17 @@ $listePieces = ["Tour","Cavalier","Fou","Reine","Roi","Fou","Cavalier","Tour"];
     for($i = 0; $i<8; $i++){
         for($j = 0; $j<8; $j++){
             echo "<div style='border:1px solid;text-align:center;display:inline-block;width: 100px; height: 100px; background-color: ";
-            if($color=="black"){
-                echo $color."; color: white;'>"; 
-                $color = "white";
+            switch($color){
+                case "black" : echo $color."; color: white;'>";$color = "white";break;
+                case "white" : echo $color."; color: black;'>";$color = "black";break;
+                default: break;
             }
-            else{
-                echo $color."; color: black;'>"; 
-                $color = "black";
-            }
-            if ($i==0){
-                $piece = new piece("Blanc",$listePieces[$j]);
-                echo $piece;
-            }
-            else if ($i==1){
-                $piece = new piece("Blanc","Pion");
-                echo $piece;
-            }
-            else if ($i==6){
-                $piece = new piece("Noir","Pion");
-                echo $piece;
-            }
-            else if($i==7){
-                $piece = new piece("Noir",$listePieces[$j]);
-                echo $piece;
+            switch($i){
+                case 0 : echo $piece = new piece("Blanc",$listePieces[$j]);break;
+                case 1 : echo $piece = new piece("Blanc","Pion");break;
+                case 6 : echo $piece = new piece("Noir","Pion");break;
+                case 7 : echo $piece = new piece("Noir",$listePieces[$j]);break;
+                default: break;
             }
             echo "</div>";
         }
