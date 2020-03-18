@@ -1,17 +1,20 @@
 <?php
 $color = "white";
-$listePieces = ["Tour","Cavalier","Fou","Reine","Roi","Fou","Cavalier","Tour"];
     class piece{
         private $_couleur;
         private $_type;
+        private $_listePieces = ["Tour","Cavalier","Fou","Reine","Roi","Fou","Cavalier","Tour","Pion"];
 
         public function __construct($couleur,$type){
             $this->_couleur = $couleur;
-            $this->_type = $type;
+            $this->_type = $this->setPiece($type);
         }
 
         public function __toString(){
             return $this->_type." ".$this->_couleur;
+        }
+        public function setPiece($id){
+            return $this->_type = $this->_listePieces[$id];
         }
     }
     for($i = 0; $i<8; $i++){
@@ -23,10 +26,10 @@ $listePieces = ["Tour","Cavalier","Fou","Reine","Roi","Fou","Cavalier","Tour"];
                 default: break;
             }
             switch($i){
-                case 0 : echo $piece = new piece("Blanc",$listePieces[$j]);break;
-                case 1 : echo $piece = new piece("Blanc","Pion");break;
-                case 6 : echo $piece = new piece("Noir","Pion");break;
-                case 7 : echo $piece = new piece("Noir",$listePieces[$j]);break;
+                case 0 : echo $piece = new piece("Blanc",$j);break;
+                case 1 : echo $piece = new piece("Blanc",8);break;
+                case 6 : echo $piece = new piece("Noir",8);break;
+                case 7 : echo $piece = new piece("Noir",$j);break;
                 default: break;
             }
             echo "</div>";
@@ -36,7 +39,5 @@ $listePieces = ["Tour","Cavalier","Fou","Reine","Roi","Fou","Cavalier","Tour"];
             $color = "white";
         else
             $color = "black";
-
     }
-
 ?>
