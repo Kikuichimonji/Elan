@@ -1,5 +1,5 @@
 <?php
-    class Voiture{
+    class Voiture{    // Class Voiture with 2 parameters
         protected $_marque;
         protected $_modele;
 
@@ -8,13 +8,13 @@
             $this->_model = $model;
         }
 
-        public function getInfos()
+        public function getInfos()  // A function that generates infos from Voiture
         {
             echo "<br>Marque : ".$this->_marque."<br>Model : ".$this->_model."<br>";
         }
     }
 
-    class VoitureElec extends Voiture{
+    class VoitureElec extends Voiture{   // Child Class that inherit from Voiture
         private $_autonomie;
 
         public function __construct($marque,$model,$autonomie){
@@ -22,8 +22,7 @@
             $this->_autonomie = $autonomie;
         }
 
-        public function getInfos()
-        {
+        public function getInfos()  // A function that generates infos from VoitureElec
             echo "<br>Marque : ".$this->_marque."<br>Model : ".$this->_model."<br>Autonomie : ".$this->_autonomie."<br>";
         }
     }

@@ -1,7 +1,7 @@
 <?php
     setlocale(LC_TIME, "fr_FR");
-    $date = "2018-02-23"; //on assume qu'il reste sous ce format
-    function formaterDateFR($dat)
+    $date = "2018-02-23";   //on assume qu'il reste sous ce format
+    function formaterDateFR($dat) // A function that generate a formated date out of a numeric date
     {
         $year = substr($dat, -10,4);
         $month = substr($dat, -5,2);
