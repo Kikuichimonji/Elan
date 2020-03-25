@@ -1,0 +1,94 @@
+*{
+    box-sizing: border-box; /* force la taille de la box sans padding margin */
+}
+body{
+    margin:0;
+}
+#wrapper{
+    margin:auto;
+    height:100vh;
+    max-width: 1200px;
+}
+nav #toplink{
+    position:relative;
+    bottom:15px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    color:black;
+    text-transform: uppercase;
+    padding:25px;
+    left: 50px;
+}
+nav a img{
+    text-align:left;
+}
+footer{
+    display:flex;
+}
+#banner{
+    display:flex;
+}
+#banner figure{
+    margin:0;
+} 
+#banner img{
+    width:100%;
+}
+#banner figcaption{
+    position:relative;
+    bottom:50px;
+    background-color:rgba(4, 192, 29, 0.3);
+    padding:15px;
+    color:white;
+}
+#banner a{
+    text-decoration: none;
+    background-color: rgb(96, 151, 12);
+    padding:10px;
+    border-radius: 10px;
+    font-weight: bold;
+    color:white;
+    position: relative;
+    left: 75%;
+}
+
+#flex{
+    display: flex;
+}
+#article{
+    width:66%;
+    margin:0;
+    border-bottom: 5px solid green;
+    
+}
+#article2{
+    width:34%;
+    text-align: center;
+    background-color: green;
+    font-weight: bold;
+    color: white;
+}
+
+#article2 a{
+    margin:auto;
+    padding-left: 10px;
+    display: block;
+}
+
+#bottom section{
+    margin:auto;
+    margin-left:0;
+    text-decoration: none;
+}
+#form{
+    padding-bottom: 10px;
+}
+
+#linkbottom{
+    text-decoration: none;
+    background: green;
+    padding:5px;
+    color:white;
+    font-weight: bold;
+}

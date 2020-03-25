@@ -1,0 +1,35 @@
+*{
+    box-sizing: border-box; /* force la taille de la box sans padding margin */
+}
+
+#fajitas
+{   
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+}
+#MainJeu
+{
+    display:flex;
+    justify-content: space-around;
+}
+#J1
+{
+    width: 20%;
+}
+#J2
+{
+    width: 20%;
+}
+#Jeu
+{
+    background-color: lightcoral;
+    display: flex;
+    flex-wrap: wrap;
+}
+.case
+{
+    height:100px;
+    width:100px;
+    border: 1px solid black;
+}
