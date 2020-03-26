@@ -4,17 +4,16 @@ var resetButton = document.getElementById("reset");
 var boolvalue = true;
 var joueurActif = 1;
 var coup = 0;
-var nbCase = 9;
 var victoire = false; 
-var sideSize = nbCase/Math.sqrt(nbCase);
 var symboleJ1 = "X";
 var symboleJ2 = "O";
 
 var grilleScore =new Array();  //tableau contenant les scores
 
-  
+function create(size)
+{
     document.getElementById("Jeu").innerHTML="";
-    //sideSize=size/Math.sqrt(size);
+    sideSize=size/Math.sqrt(size);
     grille.style.width = (sideSize) *100 +"px"; //Change la taille en fonction du nombre de cases (pour le flex)
     resetButton.onclick = reset;
     for(i=0;i<sideSize;i++){ //Creation de la grille
@@ -28,7 +27,7 @@ var grilleScore =new Array();  //tableau contenant les scores
     var caseGrille = document.getElementsByClassName("case");
     for(i=0;i < caseGrille.length;i++)  
         caseGrille[i].onclick=play; //Quand on clic sur une case on lance la fonction play()
-
+}
 
 
 function play() //Fonction quand on clique sur une case 
@@ -62,7 +61,6 @@ function play() //Fonction quand on clique sur une case
 function isWin(col,row)
 {
     var countH,countV,countD1,countD2 = 0; countH = countV = countD1 = countD2;
-
     for(i=0;i<sideSize;i++)     //check lignes
     {
         if(grilleScore[col][i] == joueurActif) //check lignes
@@ -76,23 +74,23 @@ function isWin(col,row)
         if(countH == sideSize || countV == sideSize || countD1 == sideSize ||countD2 == sideSize)
             victoire = true;
     }
-    
+ 
     if(victoire)
         texteJoueur.innerHTML = "Bravo joueur " + joueurActif + " vous avez gagné !!";
-    else if(!victoire && coup == nbCase)
+    else if(!victoire && coup == sideSize*sideSize)
         texteJoueur.innerHTML = "Vous êtes nuls";
-    else{
+    else{   
             boolvalue = !boolvalue;
             joueurActif = boolvalue ? 1 :2;
             texteJoueur.innerHTML = "C'est au joueur " + joueurActif + " de jouer";
         }
 
 }
-function changeJ1(){
+function changeJ1(){                //Changement symbole J1
     symboleJ1 = document.getElementById("symbJ1").value;
     document.getElementById("symboleJ1").innerHTML = symboleJ1;
 }
-function changeJ2(){
+function changeJ2(){                //Changement symbole J2
     symboleJ2 = document.getElementById("symbJ2").value;
     document.getElementById("symboleJ2").innerHTML = symboleJ2;
 }
