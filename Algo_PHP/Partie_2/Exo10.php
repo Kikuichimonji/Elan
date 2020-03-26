@@ -3,21 +3,16 @@
     $nomsInput = array("Nom","Prénom","Email","Ville","Sexe");
     $elements = array("Développeur Logiciel","Designer web","Intégrateur","Chef de projet");
 
-    function afficherInput($tab){       // A function that generate inputs out of an array
-        for($i = 0;$i < count($tab);$i++)
-            echo "<label>".$tab[$i]." :</label><br><input type='text'><br>";
-    }
+    function generFormulaire($tabInput,$tabElem){       // A function that generate inputs out of an array
+        $retour ="<form>";
+        foreach($tabInput as $valInput)
+            $retour=$retour."<label>".$valInput." :</label><br><input type='text'><br>";
     
-    
-    function alimenterListeDeroulante($tab){      // A function that generate a list out of an array
-        echo "<br><select name='genre' size='1'>";
-        for($i = 0;$i < count($tab);$i++)
-            echo "<option>".$tab[$i];
-        echo "</select><br>";
+        $retour=$retour."<br><select name='genre' size='1'>";
+        foreach($tabElem as $valElem)
+            $retour=$retour."<option>".$valElem;
+        $retour=$retour."</select><br><br><input type='submit' formaction='#' value='Envoyer'></form>";
+        return $retour;
     }
-    echo "<form>";
-    afficherInput($nomsInput);
-    alimenterListeDeroulante($elements);
-    echo "<br><input type='submit' formaction='#' value='Envoyer'>";
-    echo "</form>";
+    echo generFormulaire($nomsInput,$elements);
 ?>

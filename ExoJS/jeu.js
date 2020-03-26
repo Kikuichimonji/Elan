@@ -53,50 +53,22 @@ function play() //Fonction quand on clique sur une case
 
 function isWin(col,row)
 {
-    var count = 0;
+    var countH,countV,countD1,countD2 = 0; countH = countV = countD1 = countD2;
+
     for(i=0;i<sideSize;i++)     //check lignes
     {
-        if(grilleScore[col][i] == joueurActif)
-            count++;
-        if(count == sideSize)
+        if(grilleScore[col][i] == joueurActif) //check lignes
+            countH++;
+        if(grilleScore[i][row] == joueurActif) //check colones
+            countV++;
+        if(grilleScore[i][i] == joueurActif)   //check diagonal 1
+            countD1++;
+        if(grilleScore[i][i] == joueurActif)   //check diagonal 2
+            countD2++;
+        if(countH == sideSize || countV == sideSize || countD1 == sideSize ||countD2 == sideSize)
             victoire = true;
     }
     
-    if(!victoire)
-    {
-        count = 0;
-        for(i=0;i<sideSize;i++)  // check colonnes
-        {
-            if(grilleScore[i][row] == joueurActif)
-                count++;
-            if(count == sideSize)
-                victoire = true;
-        }
-    }
-    
-    if(!victoire)
-    {
-        count = 0;
-        for(i=0;i<sideSize;i++) // check diagonales 1
-        {
-            if(grilleScore[i][i] == joueurActif)  
-                count++;
-            if(count == sideSize)
-                victoire = true;
-        }
-    }
-
-    if(!victoire)
-    {
-        count = 0;
-        for(i=0;i<sideSize;i++) // check diagonales 2
-        {
-            if(grilleScore[i][sideSize-(i+1)] == joueurActif)  
-                count++;
-            if(count == sideSize)
-                victoire = true;     
-        }
-    }
     if(victoire)
         texteJoueur.innerHTML = "Bravo joueur " + joueurActif + " vous avez gagné !!";
     else if(!victoire && coup == nbCase)
@@ -120,8 +92,6 @@ function reset() // Permet d'effacer le contenu des cases
     texteJoueur.innerHTML = "C'est au joueur " + joueurActif + " de jouer";
     for(i=0;i<sideSize;i++){ //reset grille
         for(j=0;j<sideSize;j++)
-        {
             grilleScore[i][j] = 0;      //Init tableau score
-        }
     }
 }

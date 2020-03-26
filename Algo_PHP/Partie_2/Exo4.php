@@ -4,13 +4,14 @@
     function afficherTableHTML($tab) // A function that return a table of countries and Capital Cities with the wiki link assiociated 
     {
         asort($tab);
-        echo "<table  border='1' style='text-align : left'><tr><th><b>Pays</b></th><th><b>Capitale</b></th><th>Lien wiki</th></tr>";
+        $retour= "<table  border='1' style='text-align : left'><thead><tr><th><b>Pays</b></th><th><b>Capitale</b></th><th>Lien wiki</th></tr></thead><tbody>";
         foreach($tab as $country => $capital)
         {
-            echo "<tr><th>".strtoupper($country)."</th><th>".$capital."</th><th><a href='https://fr.wikipedia.org/wiki/".$capital."' target='_blank'>Lien</a> </th></tr>";
+            $retour= $retour."<tr><th>".mb_strtoupper($country)."</th><th>".$capital."</th><th><a href='https://fr.wikipedia.org/wiki/".$capital."' target='_blank'>Lien</a> </th></tr>";
         }
-        echo "</table>";
+        $retour= $retour."</tbody></table>";
+        return $retour;
     }
 
-    afficherTableHTML($capitales);
+    echo afficherTableHTML($capitales);
 ?>

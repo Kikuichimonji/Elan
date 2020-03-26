@@ -1,12 +1,12 @@
 <?php
     class Voiture{          // Class Voiture 
-        public $_marque;
-        public $_model ;
-        public $_nbPortes;
-        public $_vitesseActuelle;
-        public $_start = false;
-        public $_selfid =0;     // ID of Voiture
-        public static $_id=0;   // Viariable that increment to help us with IDs
+        private $_marque;
+        private $_model ;
+        private $_nbPortes;
+        private $_vitesseActuelle;
+        private $_start = false;
+        private $_selfid =0;     // ID of Voiture
+        private static $_id=0;   // Variable that increment to help us with IDs
 
         public function __construct($marque,$model,$nbPortes)
         {
@@ -91,7 +91,7 @@
     $v1->accelerer(50);
     $v1->accelerer(20);
     $v1->vitesse();
-    $v1->vitesse();
+    $v2->vitesse();
     $v2->demarrer();
     $v2->accelerer(80);
     $v1->stopper();

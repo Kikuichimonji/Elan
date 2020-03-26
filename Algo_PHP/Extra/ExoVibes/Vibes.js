@@ -2,6 +2,8 @@ var acc = document.getElementsByClassName("accordion");
 var accPannel = document.getElementsByClassName("accordionItem");
 var accPlus = document.getElementsByClassName("plus");
 var image = document.getElementsByClassName("image");
+var burger = document.getElementById("burger");
+var aBurger = document.getElementsByClassName("aBurger");
 var deg = 360;
 for (i = 0; i < acc.length; i++) {
 
@@ -20,6 +22,18 @@ for (i = 0; i < acc.length; i++) {
   });
 } 
 
+for (i = 0; i < aBurger.length; i++) {
+    aBurger[i].addEventListener("click",function() {
+        document.getElementsByClassName("mainBurger")[0].classList.toggle("hiddenBurger");
+    });
+}
+/*document.getElementsByClassName("mainBurger")[0].addEventListener("click",function() {
+    document.getElementsByClassName("mainBurger")[0].classList.toggle("hiddenBurger");
+});*/
+burger.addEventListener("click",function() {
+    document.getElementsByClassName("mainBurger")[0].classList.toggle("hiddenBurger");
+});
+
 for(i=0;i < image.length;i++)
 {
     image[i].addEventListener("click",function()
@@ -36,13 +50,6 @@ for(i=0;i < image.length;i++)
         }
         if( this.className.includes("image Foff"))
             this.classList.toggle("foff");
-
-        //this.classList.toggle("rotato");
-        /*if( this.className == "image clicrotate")
-            this.className = "image noclicrotate";
-        else if( this.className =="image noclicrotate")
-            this.className = "image clicrotate";*/
-
         
     });
 }

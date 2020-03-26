@@ -1,13 +1,14 @@
 <?php
     $elements = array("1"=>"Choix 1","2"=>"Choix 2","3"=>"Choix 3");
     function genererCheckbox($tab){     // A function that generate checkbox out of an array
-        echo "<form>";
+        $retour = "<form>";
         foreach($tab as $key => $val)
         {
-            echo "<input type='checkbox' id='".$key."'id='choix".$key."' value='".$key."'>";
-            echo "<label>".$val."</label><br>";
+           $retour=$retour."<input type='checkbox' id='".$key."'id='choix".$key."' value='".$key."'>";
+           $retour=$retour."<label>".$val."</label><br>";
         }
-        echo "</form>";
+        $retour=$retour."</form>";
+        return $retour;
     }
-    genererCheckbox($elements);;
+    echo genererCheckbox($elements);;
 ?>

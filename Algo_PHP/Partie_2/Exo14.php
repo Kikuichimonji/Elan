@@ -22,8 +22,8 @@
             $this->_autonomie = $autonomie;
         }
 
-        public function getInfos()  // A function that generates infos from VoitureElec
-            echo "<br>Marque : ".$this->_marque."<br>Model : ".$this->_model."<br>Autonomie : ".$this->_autonomie."<br>";
+        public function getInfos(){ // A function that generates infos from VoitureElec
+            echo parent::getInfos()."Autonomie : ".$this->_autonomie."<br>";
         }
     }
     $v1 = new Voiture("Peugeot","408");
