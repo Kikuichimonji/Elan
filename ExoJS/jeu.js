@@ -7,23 +7,29 @@ var coup = 0;
 var nbCase = 9;
 var victoire = false; 
 var sideSize = nbCase/Math.sqrt(nbCase);
+var symboleJ1 = "X";
+var symboleJ2 = "O";
+
 var grilleScore =new Array();  //tableau contenant les scores
 
-
-grille.style.width = (sideSize) *100 +"px"; //Change la taille en fonction du nombre de cases (pour le flex)
-resetButton.onclick = reset;
-for(i=0;i<sideSize;i++){ //Creation de la grille
-    grilleScore[i]=new Array(sideSize);
-    for(j=0;j<sideSize;j++)
-    {
-        grille.innerHTML +=  "<div class='case' id="+i+j+"></div>";
-        grilleScore[i][j] = 0;      //Init tableau score
+  
+    document.getElementById("Jeu").innerHTML="";
+    //sideSize=size/Math.sqrt(size);
+    grille.style.width = (sideSize) *100 +"px"; //Change la taille en fonction du nombre de cases (pour le flex)
+    resetButton.onclick = reset;
+    for(i=0;i<sideSize;i++){ //Creation de la grille
+        grilleScore[i]=new Array(sideSize);
+        for(j=0;j<sideSize;j++)
+        {
+            grille.innerHTML +=  "<div class='case' id="+i+j+"></div>";
+            grilleScore[i][j] = 0;      //Init tableau score
+        }
     }
-}
+    var caseGrille = document.getElementsByClassName("case");
+    for(i=0;i < caseGrille.length;i++)  
+        caseGrille[i].onclick=play; //Quand on clic sur une case on lance la fonction play()
 
-var caseGrille = document.getElementsByClassName("case");
-for(i=0;i < caseGrille.length;i++)  
-    caseGrille[i].onclick=play; //Quand on clic sur une case on lance la fonction play()
+
 
 function play() //Fonction quand on clique sur une case 
 {
@@ -36,12 +42,12 @@ function play() //Fonction quand on clique sur une case
 
             if(joueurActif ==1)
             {
-                this.innerHTML = "X";
+                this.innerHTML = symboleJ1;
                 grilleScore[col][row]=joueurActif;
             }
             else
             {
-                this.innerHTML = "O";
+                this.innerHTML = symboleJ2;
                 grilleScore[col][row]=joueurActif;  
             }  
             coup++;
@@ -49,6 +55,8 @@ function play() //Fonction quand on clique sur une case
             
         }
     }
+    if (coup > 0)
+        document.getElementById("Options").style.display = "none";
 }
 
 function isWin(col,row)
@@ -63,7 +71,7 @@ function isWin(col,row)
             countV++;
         if(grilleScore[i][i] == joueurActif)   //check diagonal 1
             countD1++;
-        if(grilleScore[i][i] == joueurActif)   //check diagonal 2
+        if(grilleScore[i][sideSize-(i+1)] == joueurActif)   //check diagonal 2
             countD2++;
         if(countH == sideSize || countV == sideSize || countD1 == sideSize ||countD2 == sideSize)
             victoire = true;
@@ -80,6 +88,14 @@ function isWin(col,row)
         }
 
 }
+function changeJ1(){
+    symboleJ1 = document.getElementById("symbJ1").value;
+    document.getElementById("symboleJ1").innerHTML = symboleJ1;
+}
+function changeJ2(){
+    symboleJ2 = document.getElementById("symbJ2").value;
+    document.getElementById("symboleJ2").innerHTML = symboleJ2;
+}
 function reset() // Permet d'effacer le contenu des cases
 {
     var caseGrille = document.getElementsByClassName("case");
@@ -94,4 +110,8 @@ function reset() // Permet d'effacer le contenu des cases
         for(j=0;j<sideSize;j++)
             grilleScore[i][j] = 0;      //Init tableau score
     }
+    document.getElementById("Options").style.display = "initial";
+    document.getElementById("symbJ1").value ="";
+    document.getElementById("symbJ2").value ="";
+
 }
