@@ -1,0 +1,27 @@
+*{
+    box-sizing: border-box; /* force la taille de la box sans padding margin */
+}
+
+#galette
+{   
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+#grille
+{
+    width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.case
+{
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border: black 1px solid;
+}

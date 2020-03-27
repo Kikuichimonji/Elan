@@ -3,35 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="jeu.css" />
+    <link rel="stylesheet" href="chess.css" />
     <title>Document</title>
 </head>
-<body onload="create(9)"> 
-    <div id="fajitas"> 
-        <div id="MainJeu">
-            <div id="J1">
-                <h1>JOUEUR 1</h1>
-                <div id="symboleJ1">X</div>
-            </div>
-            <div id="Jeu"></div>
-            <div id="J2">
-                <h1>JOUEUR 2</h1>
-                <div id="symboleJ2">O</div>
-            </div>
-        </div>
-        <span id="texteJoueur">C'est au joueur 1 de jouer</span><br><br>
-        <span id="reset">RESET</span><br><br>
-        <div id="Options">
-            <label for="symbJ1">Symbole J1</label>
-            <input type="text" id="symbJ1" name="symbJ1" maxlength="1" size="5"><button onclick="changeJ1()">Choisir</button><br>
-            <label for="symbJ2">Symbole J2</label>
-            <input type="text" id="symbJ2" name="symbJ2" maxlength="1" size="5"><button onclick="changeJ2()">Choisir</button><br><br>
-            <span>Taille de la grille :</span>
-            <span onclick="create(9)">3x3 </span><span onclick="create(16)">4x4</span>
-        </div>
+<body>
+    <div id="galette">
+        <div>J1</div>
+        <div id="grille"></div>
+        <div>J2</div>
     </div>
-
-    
-    <script src="jeu.js"></script>
+    <script src="chess.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
     function afficherTableHTML($tab)    // A function that return a table of countries and Capital Cities
     {
         ksort($tab);
-        $retour = "<table  border='1' style='text-align : left'><tbody><tr><th><b>Pays</b></th><th><b>Capitale</b></th></tr>";
+        $retour = "<table  border='1' style='text-align : left'>><thead><tr><th><b>Pays</b></th><th><b>Capitale</b></th></tr></thead><tbody";
         foreach($tab as $country => $capital)
         {
             $retour = $retour."<tr><th>".mb_strtoupper($country)."</th><th>".$capital."</th></tr>";
