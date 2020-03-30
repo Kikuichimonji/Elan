@@ -19,7 +19,7 @@
             }
             public function getPrenom()
             {
-                return $this->_Prenom;
+                return $this->_prenom;
             }
             public function getNaissance()
             {
@@ -28,6 +28,22 @@
             public function getVille()
             {
                 return $this->_ville;
+            }
+            public function setNom($nom)
+            {
+                $nom = $this->_nom;
+            }
+            public function setPrenom($prenom)
+            {
+                $prenom = $this->_prenom;
+            }
+            public function setNaissance($naissance)
+            {
+                $naissance = $this->_naissance;
+            }
+            public function setVille($ville)
+            {
+                $ville = $this->_ville;
             }
             public function getCompte()
             {
