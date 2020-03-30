@@ -13,6 +13,8 @@
                 $this->_naissance = $naissance;
                 $this->_ville = $ville;
             }
+
+            //getter
             public function getNom()
             {
                 return $this->_nom;
@@ -29,6 +31,8 @@
             {
                 return $this->_ville;
             }
+
+            //setter
             public function setNom($nom)
             {
                 $nom = $this->_nom;
@@ -45,9 +49,15 @@
             {
                 $ville = $this->_ville;
             }
-            public function getCompte()
+
+            
+            public function getInfo()
             {
-                $retour = "<br>".$this->_nom." ".$this->_prenom." à ".sizeof($this->_compte)." compte :";
+                $naissance = new DateTime($this->_naissance);
+                $now = new DateTime();
+                $age = $now->diff($naissance);
+
+                $retour = "<br>".$this->_nom." ".$this->_prenom." ".$age->y." ans, a ".sizeof($this->_compte)." compte :";
                 foreach($this->_compte as $tab)
                     $retour .= "<br> - ".$tab->getlib()." avec ".$tab->getSolde()." ".$tab->getDevise() ;
                 return $retour;

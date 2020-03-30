@@ -8,9 +8,9 @@
       $compte2 = new Compte("test2",800,"franc",$jean);
       $michel = new Titulaire("MichMuch","Michel","1730-11-19","Munster");
       $compte3 = new Compte("test3",1,"rouble",$michel);
-      echo $jean->getCompte();
+      echo $jean->getInfo();
       echo $compte1->getInfo();
-      echo $michel->getCompte();
+      echo $michel->getInfo();
       echo $compte3->getInfo();
       echo $compte1->debit(25);
       echo $compte1->credit(100);

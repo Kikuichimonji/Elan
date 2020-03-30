@@ -41,7 +41,7 @@
         }
         public function getInfo()
         {
-            $retour ="<br>Le compte ".$this->_lib." appartient à ".$this->_titulaire->getNom();
+            $retour ="<br>Le compte ".$this->_lib." appartient à ".$this->_titulaire->getNom()." ".$this->_titulaire->getPrenom();
             return $retour;
         }
         public function debit($amount)
