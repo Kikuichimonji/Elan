@@ -27,6 +27,25 @@ nav #spanav{
     width: 90%;
     
 }
+nav #burger .rec{
+    height : 5px;
+    width: 100%;
+    background-color: black;
+}
+
+nav a{
+    display: flex;
+    flex-wrap: wrap;
+    color : Black;
+    font-weight: bold;
+    text-decoration: none;
+    padding:10px;
+    transition:0.4s;
+}
+nav a:hover{
+    font-size: 1.5em;
+    text-shadow:  0 0 30px rgb(168, 83, 4), 0 0 40px rgb(168, 83, 4), 0 0 50px rgb(168, 83, 4), 0 0 60px rgb(168, 83, 4);
+}
 #up{
     position: fixed;
     top: 10px;
@@ -34,10 +53,14 @@ nav #spanav{
 }
 #up a{
     -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: white;
+    -webkit-text-stroke-color: white;
     text-decoration: none;
     font-weight: bolder;
     font-size: 3em;
+    transition:0.4s;
+}
+#up a:hover{
+    font-size: 4em;
 }
 nav #burger {
     display:none;
@@ -68,20 +91,6 @@ nav #burger {
     transform : scaleX(0);
     transform-origin: left;
     transition : transform 0.4s;
-}
-nav #burger .rec{
-    height : 5px;
-    width: 100%;
-    background-color: black;
-}
-
-nav a{
-    display: flex;
-    flex-wrap: wrap;
-    color : Black;
-    font-weight: bold;
-    text-decoration: none;
-    padding:10px;
 }
 
 @media all and (max-width: 670px){
@@ -191,20 +200,20 @@ H1{
 .close .panel{
     height:0px;
 
-    -webkit-transform: scaleX(0);
-	-o-transform: scaleX(0);
-	-ms-transform: scaleX(0);
-    transform: scaleX(0);
+    -webkit-transform: scaley(0);
+	-o-transform: scaley(0);
+	-ms-transform: scaley(0);
+    transform: scaley(0);
 
 }
 .open .panel{
     padding: 20px;
     background-color: #fff;
 
-    -webkit-transform: scaleX(1);
-	-o-transform: scaleX(1);
-	-ms-transform: scaleX(1);
-    transform: scaleX(1);
+    -webkit-transform: scaley(1);
+	-o-transform: scaley(1);
+	-ms-transform: scaley(1);
+    transform: scaley(1);
 
 	-webkit-transition: -webkit-transform 0.4s ;
 	-o-transition: -o-transform 0.4s ;
@@ -294,19 +303,31 @@ H1{
 {
     color:white;
     text-decoration: none;
-    padding:20px;
+    cursor: pointer;
+    transition:0.4s;
+    
+}
+#randomimg footer a:hover
+{
+    font-size: 1.5em;
 }
 #randomimg footer div{
     display:flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    width:30%;
+    padding:5px;
 }
-@media all and (max-width: 550px){
+@media all and (max-width: 750px){
     #randomtext .case{
         width: 100%;
     }
     #randomimg footer div a{
         width:50%;
         padding: 5px;
+    }
+    #randomimg footer div{ 
+        width:50%;
     }
 }
 

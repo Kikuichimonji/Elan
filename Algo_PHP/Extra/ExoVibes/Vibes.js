@@ -4,6 +4,10 @@ var accPlus = document.getElementsByClassName("plus");
 var image = document.getElementsByClassName("image");
 var burger = document.getElementById("burger");
 var aBurger = document.getElementsByClassName("aBurger");
+var imgLink1 = document.getElementById("img1");
+var imgLink2 = document.getElementById("img2");
+var imgLink3 = document.getElementById("img3");
+var imgLinkall = document.getElementById("imgall");
 var deg = 360;
 for (i = 0; i < acc.length; i++) {
 
@@ -27,9 +31,6 @@ for (i = 0; i < aBurger.length; i++) {
         document.getElementsByClassName("mainBurger")[0].classList.toggle("hiddenBurger");
     });
 }
-/*document.getElementsByClassName("mainBurger")[0].addEventListener("click",function() {
-    document.getElementsByClassName("mainBurger")[0].classList.toggle("hiddenBurger");
-});*/
 burger.addEventListener("click",function() {
     document.getElementsByClassName("mainBurger")[0].classList.toggle("hiddenBurger");
 });
@@ -53,5 +54,43 @@ for(i=0;i < image.length;i++)
         
     });
 }
+function afficheAll(){
+    var tab = document.getElementsByClassName("tri");
+    [].forEach.call(tab,function(tab){
+        tab.style.display = "initial";
+    });
+}
+
+imgLink1.addEventListener("click",function()
+{
+    afficheAll();
+    var tab = document.getElementsByClassName("imag1");
+    [].forEach.call(tab,function(tab){
+        tab.style.display = "none";
+    });
+});
+
+imgLink2.addEventListener("click",function()
+{
+    afficheAll();
+    var tab = document.getElementsByClassName("imag2");
+    [].forEach.call(tab,function(tab){
+        tab.style.display = "none";
+    });
+});
+
+imgLink3.addEventListener("click",function()
+{
+    afficheAll();
+    var tab = document.getElementsByClassName("imag3");
+    [].forEach.call(tab,function(tab){
+        tab.style.display = "none";
+    });
+});
+
+imgLinkall.addEventListener("click",function()
+    {
+        afficheAll();
+    });
 
 
