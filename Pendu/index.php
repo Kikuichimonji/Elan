@@ -8,7 +8,7 @@
 </head>
 <body> 
     <?php 
-        $liste=["test","bonjour","virgile","llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch"];
+        $liste=["developpeur","developper","developpement","encyclopedie","chameau","test","bonjour","virgile","llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch"];
         $mot = $liste[array_rand($liste,1)];
     ?>
     <div id="enchiladas">

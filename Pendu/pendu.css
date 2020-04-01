@@ -49,6 +49,14 @@
     color:red;
     align-self: flex-end;
 }
+.clavier.false:hover
+{
+    font-size: 2em;
+}
+.clavier.true:hover
+{
+    font-size: 2em;
+}
 .clavier
 {
     font-weight: bold;
@@ -61,13 +69,8 @@
 .clavier:hover
 {
     font-size: 3em;
+}
 
-}
-.clavier.false:hover
-{
-    font-size: 2em;
-    color:red ; 
-}
 #reponse
 {
     display:none;
