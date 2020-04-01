@@ -15,6 +15,7 @@
 #grille
 {
     width: 800px;
+    min-width: 800px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -24,4 +25,14 @@
     height: 100px;
     background-color: white;
     border: black 1px solid;
+}
+
+.case img
+{
+    transition: 0.4s;
+}
+.case img:hover
+{
+    transform :scale(1.2) ;
+    transform-origin: top;
 }
