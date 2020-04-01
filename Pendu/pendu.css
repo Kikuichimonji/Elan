@@ -42,21 +42,22 @@
 .true
 {
     color:green;
-    align-self: flex-end;
 }
 .false
 {
     color:red;
+}
+.clavier.false, .clavier.true
+{
+    
     align-self: flex-end;
+    cursor: default;
 }
-.clavier.false:hover
+.clavier.false:hover, .clavier.true:hover
 {
     font-size: 2em;
 }
-.clavier.true:hover
-{
-    font-size: 2em;
-}
+
 .clavier
 {
     font-weight: bold;

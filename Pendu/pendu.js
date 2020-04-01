@@ -1,9 +1,9 @@
 var albhabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-var coup = 8;
+var coup = 7;
 var mot = document.getElementById("reponse").innerText;
 document.getElementById("reponse").innerHTML = "plus de triche";
 var restant = mot.length;
-var dessin = document.getElementById("dessin");
+var dessin = document.getElementById("pendu");
 var clavier = document.getElementsByClassName("clavier");
 albhabet.forEach(element => {
     document.getElementById("texte").innerHTML += "<span class='clavier'>"+element+"</span>";
@@ -31,14 +31,17 @@ function clickClavier()
         this.removeEventListener("click",clickClavier);
     }
     if(!bool)
+    {
         coup--;
-    dessin.innerHTML = coup;
+
+        dessin.setAttribute("src","pendu"+(7-coup)+".jpg");
+    }
     if(coup <= 0)
     {
         dessin.innerHTML = "PERDU";
         stopClick();
     }
-    else if(restant == 0)
+    else if(!restant)
     {
         dessin.innerHTML = "GAGNER";
         stopClick();

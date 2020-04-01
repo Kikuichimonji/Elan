@@ -15,7 +15,7 @@
             <h1>Le jeu du PENDU</h1>
         <div id="mainjeu">
             <div id="dessin">
-                dessin
+                <img id="pendu" src="pendu0.jpg">
             </div>
             <div id="mot"> 
                 <?php 
