@@ -1,0 +1,74 @@
+*{
+    box-sizing: border-box; /* force la taille de la box sans padding margin */
+}
+
+#enchiladas
+{   
+    max-width: 1200px;
+    margin: auto;
+    text-align: center; 
+    display:flex;
+    flex-flow:wrap row;
+    justify-content: center;
+
+}
+#mainjeu
+{
+    width:80%; 
+}
+
+#dessin
+{
+    margin: auto;
+    width:50%;
+}
+#mot
+{
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+.lettre
+{
+    padding:2px;
+}
+
+#texte
+{   
+    height: 6em;
+    display:flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.true
+{
+    color:green;
+    align-self: flex-end;
+}
+.false
+{
+    color:red;
+    align-self: flex-end;
+}
+.clavier
+{
+    font-weight: bold;
+    font-size: 2em;
+    padding:2px;
+    cursor: pointer;
+    transition: 0.1s;
+    transform-origin: bottom;
+}
+.clavier:hover
+{
+    font-size: 3em;
+
+}
+.clavier.false:hover
+{
+    font-size: 2em;
+    color:red ; 
+}
+#reponse
+{
+    display:none;
+}
