@@ -71,8 +71,27 @@
 {
     font-size: 3em;
 }
-
 #reponse
 {
     display:none;
+}
+#resultat
+{
+    position:absolute;
+    font-weight: bold;
+    font-size: 2em;
+    transition: 3s;
+}
+#resultat.gagnant
+{
+    color: green;
+}
+#resultat.perdant
+{
+    color: red;
+}
+#resultat.gagnant,#resultat.perdant
+{
+    transform: translate(200px,-100px) rotate(1010deg);
+    font-size: 10em;
 }

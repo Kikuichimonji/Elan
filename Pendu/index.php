@@ -8,7 +8,7 @@
 </head>
 <body> 
     <?php 
-        $liste=["developpeur","developper","developpement","encyclopedie","chameau","test","bonjour","virgile","llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch"];
+        $liste=["developpeur","developper","developpement","encyclopedie","chameau","test","bonjour","virgile","micka","llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch"];
         $mot = $liste[array_rand($liste,1)];
     ?>
     <div id="enchiladas">
@@ -16,6 +16,9 @@
         <div id="mainjeu">
             <div id="dessin">
                 <img id="pendu" src="pendu0.jpg">
+            </div>
+            <div id="resultat">
+                
             </div>
             <div id="mot"> 
                 <?php 
@@ -27,6 +30,9 @@
                 
             </div>
             <div id="reponse"><?php echo $mot ?></div>
+            <div>
+            <!--<button onclick="aWinnerIsYou()">INSTANT WIN</button> -->
+            </div>
         </div>
     </div>
     

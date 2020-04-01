@@ -5,6 +5,7 @@ document.getElementById("reponse").innerHTML = "plus de triche";
 var restant = mot.length;
 var dessin = document.getElementById("pendu");
 var clavier = document.getElementsByClassName("clavier");
+var result = document.getElementById("resultat");
 albhabet.forEach(element => {
     document.getElementById("texte").innerHTML += "<span class='clavier'>"+element+"</span>";
 });
@@ -40,11 +41,13 @@ function clickClavier()
     {
         dessin.innerHTML = "PERDU";
         stopClick();
+        iAmError();
     }
     else if(!restant)
     {
         dessin.innerHTML = "GAGNER";
         stopClick();
+        aWinnerIsYou();
     }
 }
 function stopClick()
@@ -52,4 +55,14 @@ function stopClick()
     [].forEach.call(clavier,function(perdu){
         perdu.removeEventListener("click",clickClavier)
     });
+}
+function aWinnerIsYou()
+{
+    result.innerHTML = "BRAVO"
+    result.classList.toggle("gagnant");
+}
+function iAmError()
+{
+    result.innerHTML = "PERDU"
+    result.classList.toggle("perdant");
 }
