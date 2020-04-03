@@ -17,8 +17,9 @@
             <div id="dessin">
                 <img id="pendu" src="pendu0.jpg">
             </div>
-            <div id="resultat">
-                
+            <div id="antimove">
+                <div id="resultat">
+                </div>
             </div>
             <div id="mot"> 
                 <?php 
@@ -27,7 +28,9 @@
                 ?>
             </div>
             <div id="texte">
-                
+            </div>
+            <div id="animbox">
+                <button id="replay" onclick="replay()">Rejouer?</button>
             </div>
             <div id="reponse"><?php echo $mot ?></div>
             <div>
@@ -36,6 +39,7 @@
         </div>
     </div>
     
+    <script>var listemot='<?php echo json_encode($liste);?>';</script>
     <script src="pendu.js"></script>
 </body>
 </html>

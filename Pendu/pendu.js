@@ -6,6 +6,8 @@ var restant = mot.length;
 var dessin = document.getElementById("pendu");
 var clavier = document.getElementsByClassName("clavier");
 var result = document.getElementById("resultat");
+var rejoue = document.getElementById("replay");
+var liste = JSON.parse(listemot);
 albhabet.forEach(element => {
     document.getElementById("texte").innerHTML += "<span class='clavier'>"+element+"</span>";
 });
@@ -60,9 +62,19 @@ function aWinnerIsYou()
 {
     result.innerHTML = "BRAVO"
     result.classList.toggle("gagnant");
+    rejoue.style.visibility = "initial";
 }
 function iAmError()
 {
     result.innerHTML = "PERDU"
     result.classList.toggle("perdant");
+    rejoue.style.visibility = "initial";
+}
+function replay()
+{
+    rejoue.classList.toggle("clic");
+    setTimeout(function(){
+        document.location.reload(true);
+    },1000);
+    
 }

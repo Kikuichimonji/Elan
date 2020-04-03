@@ -49,7 +49,6 @@
 }
 .clavier.false, .clavier.true
 {
-    
     align-self: flex-end;
     cursor: default;
 }
@@ -75,12 +74,20 @@
 {
     display:none;
 }
+
+#antimove
+{
+    max-height: 0px;
+}
 #resultat
 {
-    position:absolute;
+    margin: auto;
     font-weight: bold;
     font-size: 2em;
     transition: 3s;
+    max-width: 70%;
+    font-size: 1em;
+    transition: 1.5s;
 }
 #resultat.gagnant
 {
@@ -92,6 +99,56 @@
 }
 #resultat.gagnant,#resultat.perdant
 {
-    transform: translate(200px,-100px) rotate(1010deg);
+    transform: translateY(-200px) rotate(1010deg);
     font-size: 10em;
+}
+#replay
+{
+    visibility: hidden;
+    color: red;
+    background-color: white;
+    padding: 10px;
+    border: none;
+    font-weight: bold;
+    font-size: 1.5em;
+    cursor: pointer;
+    animation: cocainexpress 1s ease-in-out infinite alternate;
+    
+}
+#replay.clic
+{
+    animation: getOut 3s forwards;
+    
+}
+#animbox
+{
+    overflow: hidden;
+    margin-left: 70%;
+    width : 20%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+}
+@keyframes cocainexpress
+{   from
+    {
+        text-shadow:  0 0 20px rgb(168, 83, 4),0 0 30px rgb(168, 83, 4), 0 0 40px rgb(168, 83, 4), 0 0 50px rgb(168, 83, 4), 0 0 60px rgb(168, 83, 4),0 0 70px rgb(168, 83, 4);
+        transform:rotate(-30deg);
+    }
+    to
+    {
+        text-shadow:  0 0 10px red,0 0 20px red,0 0 30px red, 0 0 40px red, 0 0 50px red, 0 0 60px red,0 0 70px red;
+        transform:rotate(30deg);
+        color: yellowgreen;
+    }
+}
+@keyframes getOut
+{
+    from
+    {
+    }
+    to
+    {
+        transform:translateX(400px) rotate(9000deg);
+    }
 }
