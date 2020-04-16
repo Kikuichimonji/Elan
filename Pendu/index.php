@@ -8,7 +8,13 @@
 </head>
 <body> 
     <?php 
-        $liste=["developpeur","developper","developpement","encyclopedie","chameau","test","bonjour","virgile","micka","llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch"];
+        //include 'mots.txt';
+        if($lec = fopen("mots.txt","r"))
+        {
+            while(!feof($lec))
+                $liste[] = strtolower(trim(fgets($lec)));
+            fclose($lec);
+        }
         $mot = $liste[array_rand($liste,1)];
     ?>
     <div id="enchiladas">

@@ -24,8 +24,9 @@
 }
 #mot
 {
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    font-size: 1.5em;
 }
 .lettre
 {
@@ -99,7 +100,7 @@
 }
 #resultat.gagnant,#resultat.perdant
 {
-    transform: translateY(-200px) rotate(1010deg);
+    transform: translateY(-220px) rotate(1050deg);
     font-size: 10em;
 }
 #replay
