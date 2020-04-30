@@ -17,22 +17,17 @@
                     {
                         $f_password = password_hash($f_password1,PASSWORD_ARGON2I);
                         try{
-                            $link = new PDO("mysql:host=localhost;dbname=client","root","",[
-                                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-                            ]);
-                            $sql="INSERT INTO client(username,email,password)
-                                VALUES ('$f_nom$f_prenom','$f_mail','$f_password')";
-                            $sql= "INSERT INTO client(username,email,password) VALUES (:name, :pwd)";
-                            $link->exec($sql); //prepare()
-                            $
+                            require_once("connect.php");
+                            $sql= $link->prepare("INSERT INTO client(username,email,password) VALUES (:name,:mail,:pwd)");
+                            $sql->execute([":name" => "$f_nom$f_prenom",":mail" => "$f_mail",":pwd" => "$f_password"]);
+
                         }
                         catch (PDOException $e) {
                             echo $e->getMessage();
                             die();
                         }
-                        $_SESSION["user"]=$_POST;
-                       // header("Location: connect.php");
+                        $_SESSION["userearly"]=$_POST;
+                        header("Location: welcome.php");
                     }
                     else
                         header("Location: register.php?error=4");
