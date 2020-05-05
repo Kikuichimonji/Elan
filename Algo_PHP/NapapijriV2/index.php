@@ -3,7 +3,11 @@
     $errors = [
         "Pirate !",
         "Identifiants incorrects !",
+        "Utilisateur inconnu",
     ];
+    if(isset($_COOKIE["CookieMonster"]) || isset($_SESSION["user"]))
+        header("Location: welcome.php");
+    
 ?>
         <main>
             <div id="mainform">
@@ -19,11 +23,15 @@
                     <input type="password" name ="password" id="passlogin" required>
                     <a href="" id="oubli">Mot de passe oublié ? </a><span class ="insulte">(spece de naze)</span>
                     <button type="submit">Connection</button>
+                    <div class="check">
+                        <input type="checkbox" name="remember" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
                     <a href="register.php" id="cree">crée un compte</a><span class ="insulte">(file nous ta thune)</span>
+                    <input type="hidden" name="token" id="token" value="<?php echo $token; ?>" />
                 </form>
             </div>
         </main>
+        <script src="script.js"></script>
 <?php include "footer.php" ?>
-    <script src="script.js"></script>
-</body>
-</html>
+    

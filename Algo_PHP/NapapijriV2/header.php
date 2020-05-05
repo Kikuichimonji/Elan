@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="nappa.css">
 </head>
 <body>
+<?php 
+    session_start(); 
+    if(!isset($_SESSION["token"]))
+    {
+        $token = bin2hex(random_bytes(32));
+        $_SESSION["token"] = $token;
+    }
+    else
+        $token = $_SESSION["token"];
+?>
     <div id="tortilas">
         <nav>
             <div id="topnav">

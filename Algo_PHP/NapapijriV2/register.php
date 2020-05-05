@@ -5,7 +5,9 @@
         "Identifiants incorrects !",
         "Champs manquants !",
         "Mots de passes invalide",
-        "Les mots de passes ne correspondent pas"
+        "Les mots de passes ne correspondent pas",
+        "Cette adresse email est déjà utilisée",
+        "Adresse mail invalide"
     ];
 ?>
         <main>
@@ -36,12 +38,12 @@
                         <input type="checkbox" name="pigeon" id="pigeon">
                         <label for="pigeon">Je confirme ne pas avoir lu les conditions générales (comme d'habitude)</label>
                     </div>
+                    <input type="hidden" name="token" id="token" value="<?php echo $token; ?>" />
                     <button type="submit">Créer un compte</button>
+                    
                 </form>
             </div>
         </main>
-        <?php include "footer.php" ?>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
+        <script src="script.js"></script>
+    <?php include "footer.php" ?>
+    
