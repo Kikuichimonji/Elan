@@ -23,21 +23,22 @@
                             {
                                 $f_password = password_hash($f_password1,PASSWORD_ARGON2I);
                                 try{
-                                    require_once("connect.php");
+                                    require_once("../model/connect.php");
                                     $sql="SELECT * FROM client c
                                         WHERE c.email ='$f_mail'";      //Recuperation de la liste des client de la BDD correspondant au mail entré
                                     $stmt = $link->query($sql);      //Excecution de la requete
                                     $reponse = $stmt->fetch(); 
                                     if($reponse === false)      //Si la bdd ne retourne des données
                                     {
-                                        $sql= $link->prepare("INSERT INTO client(username,email,password) VALUES (:name,:mail,:pwd)");
-                                        $sql->execute([":name" => "$f_nom$f_prenom",":mail" => "$f_mail",":pwd" => "$f_password"]);
+                                        $sql= $link->prepare("INSERT INTO client(username,email,password,nom,prenom) VALUES (:name,:mail,:pwd,:nom,:prenom)");
+                                        $sql->execute([":name" => "$f_nom$f_prenom",":mail" => "$f_mail",":pwd" => "$f_password",":nom" => "$f_nom" ,":prenom" => "$f_prenom"]);
                                         $_SESSION["user"]=$_POST;
                                         $_SESSION["user"]["username"]= $_SESSION['user']['nom'].$_SESSION['user']['prenom'];
-                                        header("Location: welcome.php");
+                                        header("Location: ../view/welcome.php");
+                                        die();  
                                     }
                                     else
-                                        header("Location: register.php?error=5");
+                                        header("Location: ../view/register.php?error=5");
                                 }
                                 catch (PDOException $e) {
                                     echo $e->getMessage();
@@ -45,20 +46,20 @@
                                 }
                             }
                             else
-                                header("Location: register.php?error=4");
+                                header("Location: ../view/register.php?error=4");
                         }   
                         else
-                            header("Location: register.php?error=3");
+                            header("Location: ../view/register.php?error=3");
                 }
                 else
-                    header("Location: register.php?error=2");
+                    header("Location: ../view/register.php?error=2");
             }
             else
-                header("Location: register.php?error=6");
+                header("Location: ../view/register.php?error=6");
         }
         else 
-            header("Location: register.php?error=0");
+            header("Location: ../view/register.php?error=0");
     }
     else
-        header("Location: register.php?error=0");
+        header("Location: ../view/register.php?error=0");
 ?>

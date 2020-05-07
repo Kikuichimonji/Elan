@@ -12,7 +12,7 @@
 
             if($f_mail && $f_password)      //Si les valeurs des champs sont correctes
             {
-                require_once("connect.php");        //Connection a la BDD
+                require_once("../model/connect.php");        //Connection a la BDD
                 try{
                     $sql="SELECT * FROM client c
                             WHERE c.email ='$f_mail'";      //Recuperation de la liste des client de la BDD correspondant au mail entré
@@ -25,18 +25,18 @@
                                 $_SESSION['user'] = $reponse;   // on stock le resultat dans la session
                                 if(! empty($_POST["remember"]))
                                 {
-                                    $auth = password_hash($f_mail,PASSWORD_ARGON2I).random_bytes(20);
-                                    setcookie("CookieMonster[data1]",$auth,time()+2628000);
+                                    $auth = password_hash(random_bytes(20),PASSWORD_ARGON2I).random_bytes(20);
+                                    setcookie("CookieMonster[data1]",$auth,time()+2628000,"/");
                                     $sql= $link->prepare("UPDATE client SET auth = :auth WHERE email = :email");
                                     $sql->execute([":auth" => "$auth",":email" => "$f_mail"]);
                                 }
-                                header("Location: welcome.php"); //redirection vers la page welcome
+                                header("Location: ../view/welcome.php"); //redirection vers la page welcome
                         }
                         else
-                                header("Location: index.php?error=1"); //redirection vers la page d'accueil si le pass ne correspont pas
+                                header("Location: ../index.php?error=1"); //redirection vers la page d'accueil si le pass ne correspont pas
                     }
                     else   
-                        header("Location: index.php?error=2"); //redirection vers la page d'accueil si l'utilisateur ne correspont pas
+                        header("Location: ../index.php?error=2"); //redirection vers la page d'accueil si l'utilisateur ne correspont pas
                 }
                 catch(PDOException $e) {
                     echo $e->getMessage();  //Affichage d'une erreur
@@ -44,12 +44,12 @@
                 }
             }
             else
-                header("Location: index.php?error=1"); // Redirection vers l'accueil si les valeurs entrées sont incorectes
+                header("Location: ../index.php?error=1"); // Redirection vers l'accueil si les valeurs entrées sont incorectes
         }
         else
-            header("Location: index.php?error=0");
+            header("Location: ../index.php?error=0");
     }
     else
-        header("Location: index.php?error=0"); //Si l'utilisateur est un pirate
+        header("Location: ../index.php?error=0"); //Si l'utilisateur est un pirate
     
 ?>

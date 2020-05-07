@@ -1,4 +1,4 @@
-<?php include "header.php" ?>
+<?php include "../src/header.php" ?>
 <?php 
     $errors = [
         "Pirate !",
@@ -12,7 +12,7 @@
 ?>
         <main>
             <div id="mainform">
-                <form action="register_check.php" method="post" onSubmit="return validercreate()">
+                <form action="../controller/register_check.php" method="post" onSubmit="return validercreate()">
                     <h3>Créer un compte</h3>
                     <h4>
                         <?php 
@@ -44,6 +44,6 @@
                 </form>
             </div>
         </main>
-        <script src="script.js"></script>
-    <?php include "footer.php" ?>
+        <script src="../script.js"></script>
+    <?php include "../src/footer.php" ?>
     

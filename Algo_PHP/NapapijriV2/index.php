@@ -1,4 +1,4 @@
-<?php include "header.php" ?>
+<?php include "src/header.php" ?>
 <?php 
     $errors = [
         "Pirate !",
@@ -6,12 +6,12 @@
         "Utilisateur inconnu",
     ];
     if(isset($_COOKIE["CookieMonster"]) || isset($_SESSION["user"]))
-        header("Location: welcome.php");
+        header("Location: view/welcome.php");
     
 ?>
         <main>
             <div id="mainform">
-                <form action="security.php" method="post">
+                <form action="controller/security.php" method="post">
                     <h3>S'identifier</h3>
                     <h4><?php 
                         if(!empty($_GET) && $_GET["error"] !== false)
@@ -27,11 +27,11 @@
                         <input type="checkbox" name="remember" id="remember">
                         <label for="remember">Remember me</label>
                     </div>
-                    <a href="register.php" id="cree">crée un compte</a><span class ="insulte">(file nous ta thune)</span>
+                    <a href="view/register.php" id="cree">crée un compte</a><span class ="insulte">(file nous ta thune)</span>
                     <input type="hidden" name="token" id="token" value="<?php echo $token; ?>" />
                 </form>
             </div>
         </main>
         <script src="script.js"></script>
-<?php include "footer.php" ?>
+<?php include "src/footer.php" ?>
     

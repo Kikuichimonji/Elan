@@ -1,6 +1,6 @@
 <?php
-      include "class_Titulaire.php";
-      include "class_Compte.php";
+      include "classe/class_Titulaire.php";
+      include "classe/class_Compte.php";
 
 
       $jean = new Titulaire("Valjean","Jean","1988-11-19","Munster");

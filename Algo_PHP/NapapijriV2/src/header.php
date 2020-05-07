@@ -1,10 +1,13 @@
+<?php
+    define('CSS_DIR', '/Elan/Algo_PHP/NapapijriV2/nappa.css');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscris-toi mon ptit gars</title>
-    <link rel="stylesheet" href="nappa.css">
+    <link rel="stylesheet" href="<?php echo CSS_DIR ?>">
 </head>
 <body>
 <?php 
@@ -29,9 +32,9 @@
             </div>
             <div id="botnav">
                 <div id="navlink">
-                    <img src="logo.png" alt="logo" id="logo">
-                    <a href=""><img src="nappa01.png" alt="Nappa"></a>
-                    <a href=""><img src="jiren01.jpg" alt="Jiren"></a>
+                    <img src="/Elan/Algo_PHP/NapapijriV2/img/logo.png" alt="logo" id="logo">
+                    <a href=""><img src="/Elan/Algo_PHP/NapapijriV2/img/nappa01.png" alt="Nappa"></a>
+                    <a href=""><img src="/Elan/Algo_PHP/NapapijriV2/img/jiren01.jpg" alt="Jiren"></a>
                 </div>
                 <input type="text" placeholder="search                  (image de loupe)">
             </div>
