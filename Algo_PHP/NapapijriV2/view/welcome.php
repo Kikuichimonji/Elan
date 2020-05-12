@@ -1,10 +1,11 @@
 <?php include "../src/header.php" ?>
 <?php include "../classe/class_Compte.php" ?>
 <?php include "../classe/class_Titulaire.php" ?>
-<?php include "../model/welcome_fill.php" ?>
+<?php include "../model/UserModel.php" ?>
 <?php 
     $connected   = 0; 
     $tab_compte = array();
+    $model = new UserModel();
 ?>
 <main>
            
@@ -13,7 +14,7 @@
         $connected =1;
     else if (isset($_COOKIE["CookieMonster"]))
     {
-        $reponse = welcome_check($_COOKIE["CookieMonster"]["data1"],$link);
+        $reponse = $model->welcome_check($_COOKIE["CookieMonster"]["data1"]);
         if($reponse !== false) 
         {     //Si la bdd retourne bien des données
             header("Location: ../view/logout.php"); //redirection vers la page d'accueil si l'utilisateur ne correspont pas      
@@ -26,12 +27,11 @@
        var_dump($_COOKIE);
 
     if($connected)
-    {
-        require_once("../model/connect.php"); 
+    { 
         $mail = $_SESSION['user']['email'];
-        $reponse = welcome_fill_client($mail,$link);
+        $reponse = $model->welcome_fill_client($mail);
         $client = new Titulaire($reponse['prenom'],$reponse['nom'],"1988-11-19","Munster");
-        $reponse = welcome_fill_account($mail,$link);
+        $reponse = $model->welcome_fill_account($mail);
         foreach($reponse as $key => $data)
             $tab_compte[]= new Compte($data["libelee_compte"],$data["solde"],"euro",$client);
     }

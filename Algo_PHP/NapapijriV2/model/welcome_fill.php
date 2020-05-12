@@ -1,4 +1,5 @@
 <?php
+    /*require_once("UserModel.php");
     function welcome_check($auth,$link)
     {   
         try{
@@ -43,5 +44,6 @@
             die();
         } 
         return $reponse;
-    }
+    }*/
+?>
    

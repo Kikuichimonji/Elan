@@ -5,6 +5,11 @@
         "Identifiants incorrects !",
         "Utilisateur inconnu",
     ];
+
+    /*if(!isset($_SESSION["csrf"]))
+        $_SESSION["csrf"] = random_bytes(20);
+    $csrf = password_hash($_SESSION["csrf"],PASSWORD_ARGON2I).random_bytes(20);*/
+
     if(isset($_COOKIE["CookieMonster"]) || isset($_SESSION["user"]))
         header("Location: view/welcome.php");
     
