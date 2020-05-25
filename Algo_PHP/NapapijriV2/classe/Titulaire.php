@@ -1,4 +1,6 @@
 <?php
+    namespace Classe;
+    
     class Titulaire{
             private $_nom;
             private $_prenom;
@@ -53,8 +55,8 @@
             
             public function getInfo()
             {
-                $naissance = new DateTime($this->_naissance);
-                $now = new DateTime();
+                $naissance = new \DateTime($this->_naissance);
+                $now = new \DateTime();
                 $age = $now->diff($naissance);
 
                 $retour = "<br>".$this->_nom." ".$this->_prenom." ".$age->y." ans, a ".sizeof($this->_compte)." compte :";

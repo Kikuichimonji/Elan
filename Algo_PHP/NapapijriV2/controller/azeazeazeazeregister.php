@@ -1,23 +1,18 @@
 <?php
-    namespace Controller;
+    require_once("model/UserModel.php");
 
-    use App\Session;
-    use Model\UserModel;
-    use App\Router;
+    class Register{
 
-    class Security{
+        private $model;
+        
+        public function __construct()
+        {
+            $this->model = new UserModel();
+        }
 
         public function index()
         {
-            //Session::authenticationRequired("ROLE_USER");
             $result = "connect";
-            return ["view" => $result];
-        }
-
-        public function welcome()
-        {
-            //Session::authenticationRequired("ROLE_USER");
-            $result = "welcome";
             return ["view" => $result];
         }
 
@@ -39,19 +34,18 @@
 
                 if($f_mail && $f_password)      //Si les valeurs des champs sont correctes
                 {
-                    $model = new UserModel();
                     try{
-                        $reponse= $model->getUserFromMail($f_mail);   // Parcour de la table
+                        $reponse= $this->model->getUserFromMail($f_mail);   // Parcour de la table
                         if($reponse !== false)      //Si la bdd retourne bien des données
                         {
                             if(password_verify($f_password,$reponse['password']))    //Si le password match la bdd
                             {
-                                    Session::setUser($reponse) ;   // on stock le resultat dans la session
+                                    $_SESSION['user'] = $reponse;   // on stock le resultat dans la session
                                     if(! empty($_POST["remember"]))
                                     {
                                         $auth = password_hash(random_bytes(20),PASSWORD_ARGON2I).random_bytes(20);
-                                        setcookie("CookieMonster",$auth,time()+2628000,"/");
-                                        $model->setAuth($auth,$f_mail);
+                                        setcookie("CookieMonster[data1]",$auth,time()+2628000,"/");
+                                        $this->model->setAuth($auth,$f_mail);
                                     }
 
                                     $view = "welcome";
@@ -71,7 +65,7 @@
                 else
                     header("Location: ?error=1"); // Redirection vers l'accueil si les valeurs entrées sont incorectes
             }
-            else if(isset($_SESSION["user"]) || isset($_COOKIE["CookieMonster"]))
+            else if(isset($_SESSION["user"]))
                 return ["view" => "welcome"];
             else
                 header("Location: ?error=0"); //Si l'utilisateur est un pirate
@@ -101,15 +95,14 @@
                         {
                             if($f_password1 === $f_password2)
                             {
-                                $model = new UserModel();
                                 $f_password = password_hash($f_password1,PASSWORD_ARGON2I);
                                 try
                                 {
-                                    $reponse= $model->getUserFromMail($f_mail);   // Parcour de la table
+                                    $reponse= $this->model->getUserFromMail($f_mail);   // Parcour de la table
                                     
                                     if($reponse === false)      //Si la bdd ne retourne des données
                                     {
-                                        $reponse = $model->addUser($f_nom,$f_prenom,$f_mail,$f_password);
+                                        $reponse = $this->model->addUser($f_nom,$f_prenom,$f_mail,$f_password);
                                         $_SESSION["user"]=$_POST;
                                         $_SESSION["user"]["username"]= $_SESSION['user']['nom'].$_SESSION['user']['prenom'];
                                         $view = "welcome";
@@ -143,25 +136,13 @@
         {
             if(isset($_COOKIE['CookieMonster']))
             {
-                setcookie("CookieMonster",$value,time()-3600,"/");
+                foreach($_COOKIE['CookieMonster'] as $name => $value){ 
+                    setcookie("CookieMonster[$name]",$value,time()-3600,"/");
+                }   
             }
             unset($_SESSION['user']);
             unset($_SESSION['token']);
             header("Location:?redir=index");
-        }
-
-        public function listUsers(){
-            Session::authenticationRequired("ROLE_ADMIN");
-            $usermodel = new UserManager();
-            $users = $usermodel->findAll();
-
-            return [
-                "view" => VIEW_PATH."users.php", 
-                "data" => [
-                    "users" => $users,
-                    
-                ]
-            ];
         }
     }
    

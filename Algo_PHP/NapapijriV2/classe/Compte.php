@@ -1,4 +1,6 @@
 <?php
+    namespace Classe;
+    
     class Compte{
         private $_lib;
         private $_solde;

@@ -1,24 +1,25 @@
-<?php
-    define('CSS_DIR', '/Elan/Algo_PHP/NapapijriV2/nappa.css');
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscris-toi mon ptit gars</title>
-    <link rel="stylesheet" href="<?php echo CSS_DIR ?>">
+    <link rel="stylesheet" href="<?php echo CSS_PATH."nappa.css" ?>">
 </head>
 <body>
 <?php 
-    session_start(); 
-    if(!isset($_SESSION["token"]))
-    {
-        $token = bin2hex(random_bytes(32));
-        $_SESSION["token"] = $token;
-    }
-    else
-        $token = $_SESSION["token"];
+
+    $errors = [
+        "Pirate !",
+        "Identifiants incorrects !",
+        "Utilisateur inconnu",
+        "T'as foutu quoi bordel?",
+        "CSRF FFS",
+        "Mots de passes invalide",
+        "Les mots de passes ne correspondent pas",
+        "Cette adresse email est déjà utilisée",
+        "Adresse mail invalide"
+    ];
 ?>
     <div id="tortilas">
         <nav>
@@ -32,9 +33,9 @@
             </div>
             <div id="botnav">
                 <div id="navlink">
-                    <img src="/Elan/Algo_PHP/NapapijriV2/img/logo.png" alt="logo" id="logo">
-                    <a href=""><img src="/Elan/Algo_PHP/NapapijriV2/img/nappa01.png" alt="Nappa"></a>
-                    <a href=""><img src="/Elan/Algo_PHP/NapapijriV2/img/jiren01.jpg" alt="Jiren"></a>
+                    <img src=<?php echo IMG_PATH."logo.png" ?> alt="logo" id="logo">
+                    <a href=""><img src=<?php echo IMG_PATH."nappa01.png"?> alt="Nappa"></a>
+                    <a href=""><img src=<?php echo IMG_PATH."jiren01.jpg"?> alt="Jiren"></a>
                 </div>
                 <input type="text" placeholder="search                  (image de loupe)">
             </div>
