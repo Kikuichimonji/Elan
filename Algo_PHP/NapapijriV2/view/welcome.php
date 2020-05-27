@@ -1,7 +1,7 @@
 <?php 
     Namespace View;
 
-    use Model\UserModel;
+    use Model\UserManager;
     use Model\User;
     use App\Session;
     use Model\Compte;
@@ -16,7 +16,7 @@
 
     if (isset($_COOKIE["CookieMonster"]))
     {
-        $model = new UserModel;
+        $model = new UserManager;
         $reponse = $model->welcome_check($_COOKIE["CookieMonster"]);
         if($reponse === false) 
         {     //Si la bdd retourne bien des données
@@ -28,8 +28,8 @@
 
     if(isset($_SESSION['user']))
     { 
-        $model = new UserModel;
-        $mail = $_SESSION['user']['email'];
+        $model = new UserManager;
+        $mail = $_SESSION['user']->getEmail();
         $reponse = $model->welcome_fill_client($mail);
         $client = new User($reponse);
         $reponse = $model->welcome_fill_account($mail);

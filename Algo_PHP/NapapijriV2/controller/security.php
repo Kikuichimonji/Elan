@@ -2,7 +2,7 @@
     namespace Controller;
 
     use App\Session;
-    use Model\UserModel;
+    use Model\UserManager;
     use App\Router;
 
     class Security{
@@ -39,12 +39,12 @@
 
                 if($f_mail && $f_password)      //Si les valeurs des champs sont correctes
                 {
-                    $model = new UserModel();
+                    $model = new UserManager();
                     try{
                         $reponse= $model->getUserFromMail($f_mail);   // Parcour de la table
                         if($reponse !== false)      //Si la bdd retourne bien des données
                         {
-                            if(password_verify($f_password,$reponse['password']))    //Si le password match la bdd
+                            if(password_verify($f_password,$reponse->getPassword()))    //Si le password match la bdd
                             {
                                     Session::setUser($reponse) ;   // on stock le resultat dans la session
                                     if(! empty($_POST["remember"]))
@@ -101,7 +101,7 @@
                         {
                             if($f_password1 === $f_password2)
                             {
-                                $model = new UserModel();
+                                $model = new UserManager();
                                 $f_password = password_hash($f_password1,PASSWORD_ARGON2I);
                                 try
                                 {
@@ -152,8 +152,8 @@
 
         public function listUsers(){
             Session::authenticationRequired("ROLE_ADMIN");
-            $usermodel = new UserManager();
-            $users = $usermodel->findAll();
+            $UserManager = new UserManager();
+            $users = $UserManager->findAll();
 
             return [
                 "view" => VIEW_PATH."users.php", 

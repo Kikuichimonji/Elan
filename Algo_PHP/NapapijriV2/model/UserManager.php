@@ -2,13 +2,13 @@
     namespace Model;
     use App\AbstractManager;
 
-    class UserModel extends AbstractManager
+    class UserManager extends AbstractManager
     {
 
         private static $classname = "Model\User";
 
         public function __construct(){
-            self::connect();
+            self::connect(self::$classname);
         }
 
         public function getUser($form_user){
@@ -73,7 +73,10 @@
                     FROM client c
                     WHERE c.email =:mail";      //Recuperation de la liste des client de la BDD correspondant au mail entré
             $arg= ["mail" => $mail];
-            return self::select($sql,$arg,false);
+            return self::getOneOrNullResult(
+                self::select($sql,$arg, false),
+                self::$classname
+            );
         }
 
         public function setAuth($auth,$mail)
@@ -86,6 +89,15 @@
             
             return self::insert($sql,$arg);
 
+        }
+
+        public function findAll(){
+            $sql = "SELECT * FROM user";
+
+            return self::getResults(
+                self::select($sql, null, true),
+                self::$classname
+            );
         }
     }
 
