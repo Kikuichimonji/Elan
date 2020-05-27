@@ -2,9 +2,10 @@
     Namespace View;
 
     use Model\UserModel;
+    use Model\User;
     use App\Session;
-    use Classe\Compte;
-    use Classe\Titulaire;
+    use Model\Compte;
+  
 
 
     $tab_compte = array();
@@ -30,10 +31,10 @@
         $model = new UserModel;
         $mail = $_SESSION['user']['email'];
         $reponse = $model->welcome_fill_client($mail);
-        $client = new Titulaire($reponse['prenom'],$reponse['nom'],"1988-11-19","Munster");
+        $client = new User($reponse);
         $reponse = $model->welcome_fill_account($mail);
         foreach($reponse as $key => $data)
-            $tab_compte[]= new Compte($data["libelee_compte"],$data["solde"],"euro",$client);
+            $tab_compte[]= new Compte($data,$client);
     }
     
     echo $client->getInfo();

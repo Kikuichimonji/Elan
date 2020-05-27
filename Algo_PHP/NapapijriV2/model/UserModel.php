@@ -57,7 +57,7 @@
 
         public function welcome_fill_account($mail)
         {
-            $sql= " SELECT b.libelee_compte,b.solde
+            $sql= " SELECT *
                     FROM bank_account b 
                     INNER JOIN client c ON b.id_client = c.id
                     WHERE c.email = '$mail'";

@@ -1,19 +1,18 @@
 <?php
-    namespace Classe;
+    namespace Model;
+
+    use App\AbstractEntity;
     
-    class Compte{
+    class Compte extends AbstractEntity{
         private $_lib;
         private $_solde;
         private $_devise;
         private $_titulaire;
 
-        public function __construct($lib,$solde,$devise,$titulaire)
+        public function __construct($data,$titulaire)
         {
-            $this->_lib = $lib;
-            $this->_solde = $solde;
-            $this->_devise = $devise;
+            parent::hydrate($data, $this);
             $this->_titulaire = $titulaire;
-            
             $titulaire->setCompte($this);
 
         }
