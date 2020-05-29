@@ -1,0 +1,207 @@
+*{
+	box-sizing: border-box;
+}
+html, body{
+    margin: 0;
+    font-family: "AkkuratPro",Arial,sans-serif;
+    font-size: 14px;
+}
+
+/*
+//////////////////
+NAV
+//////////////////
+*/
+#topnav{
+    text-align: right;
+}
+#topnav a{
+    text-decoration: none;
+    color : 404040;
+    text-transform: uppercase;
+    padding-right: 1em;
+    font-size:10px;
+    
+}
+nav #logo{
+    border: 1px solid black;
+}
+nav input{
+    width:250px;
+    padding: 0.5em;
+}
+nav #botnav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 1em;
+    padding-left: 1em;
+}
+nav #navlink{
+    display: flex;
+    align-items: center;
+}
+nav #navlink img{
+    margin-right: 2em;
+}
+/*
+//////////////////
+HEADER
+//////////////////
+*/
+#headbar{
+    background-color: black;
+    color:white;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#headbar a{
+    text-decoration: none;
+    color:white;
+}
+#pub{
+    margin: auto;
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: #f9f6f1;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 15px;
+}
+/*
+//////////////////
+MAIN
+//////////////////
+*/
+#mainform form{
+    display: flex;
+    flex-flow: column wrap;
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+    margin-top: 2em;
+
+}
+#mainform form h3{
+    font-size: 1.28em;
+}
+#mainform h4{
+    margin: auto;
+    color: red;
+}
+#mainform h4.titre{
+    color: black;
+}
+#mainform form input{
+    padding: 8px;
+    border: 1px solid #b3b3b3 ;
+    margin-bottom: 1em;
+    
+}
+#mainform label{
+    color: #b3b3b3;
+    font-size: 0.85em;
+    line-height: 1.8;
+}
+#mainform form a{
+    color: black;
+    font-weight: bold;
+}
+#mainform form #oubli{
+    font-size: 0.85em;
+}
+#mainform form button{
+    background-color: black;
+    color: white;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    font-weight: bold;
+    border: none;
+}
+.insulte{
+    color:white;
+}
+#mainform .check label{
+    color: black;
+}
+#mainform #failogin{
+    color:red;
+}
+#mainform section{
+   display: flex;
+   flex-flow: column wrap;
+   align-content: center;
+}
+#mainform h1{
+    margin: auto;
+}
+#mainform ul{
+    padding-left: 0;
+    width : 50%;
+}
+#mainform li{
+    list-style: none;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    
+}
+#mainform li a{
+    color : blue;
+}
+#mainform li span a{
+    color : RED;
+    padding: 1em;
+
+}
+#mainform li a.Admin{
+    color :red;
+    font-weight: bold;
+}
+#mainform div.liwrap{
+    border: 1px solid black;
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+#mainform div .deleted{
+    color: gray;
+    font-style: italic;
+}
+
+
+/*
+//////////////////
+FOOTER
+//////////////////
+*/
+footer{
+    border-top: 1px solid #ccc;
+    margin-top: 2em;
+    padding-top: 75px;
+}
+footer #footbar{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+footer .footlink{
+    display: flex;
+    flex-flow: column wrap;
+}
+footer h4{
+    font-size: 1.15em;
+    color: #b3b3b3;
+}
+footer a{
+    text-decoration: none;
+    padding-bottom: 1em;
+    color: black;
+    font-weight: bold;
+}
