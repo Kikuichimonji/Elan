@@ -5,7 +5,7 @@
     Autoloader::register();
     use App\Session;
     use App\Router;
-    
+
 
     define("DS",DIRECTORY_SEPARATOR);
     define("ROOT",".".DS);
@@ -34,24 +34,27 @@
         "Message trop court",
     ];
     
-    if(!Session::getToken())
-        Session::setToken(random_bytes(20));
+    Session::setToken();
+
     $token = hash_hmac("sha256","tralala",Session::getToken());
         
-    Routeur::CsrfCheck($token);
-    $result = Routeur::WhatsOnGet($_GET);
+    if(Routeur::CsrfCheck($token))
+        $result = Routeur::WhatsOnGet($_GET);
+    else
+        Routeur::Redirect("security", "logout","","4");
 
 
     ob_start();
     if(is_array($result))
     {
-        if(array_key_exists('redir', $result) || array_key_exists('view', $result))
+        if(array_key_exists('redir', $result) || array_key_exists('view', $result) || array_key_exists('ctrl', $result))
         {
             $data = isset($result['data']) ? $result['data'] : null;
             include VIEW_PATH.$result['view'].".php";
         }
         else include VIEW_PATH."404.html";
-    } 
+    }
+    else include VIEW_PATH."404.html";
     $page = ob_get_contents();
     ob_end_clean();
 

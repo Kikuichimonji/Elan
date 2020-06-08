@@ -32,5 +32,13 @@
             </div>
         </footer>
     </div>
+    <script>
+        tinymce.init({
+            menu: {
+                format: { title: "Format", items: "forecolor backcolor" }
+            },
+            toolbar: "forecolor backcolor"
+        });
+    </script>
     </body>
 </html>

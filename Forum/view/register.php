@@ -1,6 +1,6 @@
 
 <section>
-    <form action="?redir=register" method="post" >
+    <form action="?redir=register&ctrl=security" method="post" >
         <h3>Créer un compte</h3>
         <h4>
             <?php 

@@ -3,51 +3,58 @@
 
     abstract class Routeur
     {
-        const DEFAULT_CONTROL = "security";
+        const DEFAULT_CONTROL = "view";
 
         public static function CsrfCheck($csrf)
         {
             try
             {
-                if(isset($_POST["token"]) && !hash_equals($_POST["token"],$csrf))
+                if(!empty($_POST))
                 {
-                    //var_dump(hash_equals($_POST["token"],$csrf));
-                    throw new \Exception("ACHTUNG BICYCLETTE!!!");
+                    if(isset($_POST["token"]) && !hash_equals($_POST["token"],$csrf))
+                        return false;
+                    return true;
                 }
+                return true;
             }
             catch(\Exception $e)
             {
                 echo $e->getMessage();
                 die();
             } 
-
         }
 
         public static function WhatsOnGet($gitgud)
         {
-            $controlname = "Controller\\".self::DEFAULT_CONTROL;
+            $controlname = "Controller\\".self::DEFAULT_CONTROL."Controller";
             $method = "index";
             
             if (isset($gitgud["ctrl"]))
-                $controlname = ucfirst(strtolower($gitgud["ctrl"]));
+                $controlname = "Controller\\".ucfirst(strtolower($gitgud["ctrl"]))."Controller";
+            if(!file_exists($controlname.".php"))
+                $controlname = "Controller\\".self::DEFAULT_CONTROL."Controller";
 
-            $controler = new $controlname();
+
             if(isset($_COOKIE['CookieMonster']))
                 $method = "forum";
             
-
             if(isset($_SESSION["user"]))
-                $method = "connect"; 
+                $method = "forum"; 
 
+            $controler = new $controlname();
             if(!empty($gitgud) && isset($gitgud["redir"]) && method_exists($controler,$gitgud["redir"]))
                 $method = $gitgud["redir"];
 
             return $controler->$method();
         }
 
-        public static function Redirect($control = null, $method = null){
-
-            header("Location:  ?ctrl=".$control."&method=".$method);
+        public static function Redirect($control = null, $redir = null, $id = null, $error = null){
+            if($error)
+                $error = "&error=".$error;
+            if($id)
+                $id = "&id=".$id;
+            
+            header("Location:  ?ctrl=".$control."&redir=".$redir.$id.$error);
             die();
            
         }

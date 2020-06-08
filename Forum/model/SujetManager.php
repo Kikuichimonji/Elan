@@ -25,9 +25,17 @@
 
         public function getAllSujet(){
 
-            $sql = "SELECT *
-            FROM sujet
-            ORDER BY datesujet desc" ;
+            $sql = "SELECT s.id,s.titresujet,s.datesujet,s.closed,s.membre_id, COUNT(m.sujet_id) as nbmessage
+            FROM sujet s
+            INNER JOIN message m ON s.id = m.sujet_id
+            GROUP BY  s.id
+            UNION 
+            SELECT s.id,s.titresujet,s.datesujet,s.closed,s.membre_id,0
+            FROM sujet s
+            WHERE s.id NOT IN (SELECT m.sujet_id
+            FROM message m ) 
+            GROUP BY  s.id
+            ORDER BY datesujet DESC " ;
             $arg= [];     
      
             return self::getResults(
@@ -49,33 +57,33 @@
 
             $sql = "DELETE 
             FROM sujet
-            WHERE id_sujet = :id ";
+            WHERE id = :id ";
             $arg= ["id" => $id];     
 
             return  self::delete($sql,$arg);
         }
 
-        public function countMessage($id){
-
-            $sql = "SELECT COUNT(m.id_message) AS c
-                    FROM message m
-                    WHERE m.sujet_id = :id";
-
-            $arg= ["id" => $id
-                  ];
-
-            return  self::select($sql,$arg, false)['c'];
-
-        }
         public function findOneById($id){
             $sql = "SELECT * 
                     FROM sujet 
-                    WHERE id_sujet = :id";
+                    WHERE id = :id";
             $arg= ["id" => $id];
             return self::getOneOrNullResult(
                 self::select($sql, $arg, false),
                 self::$classname
             );
+        }
+
+        public function verSujet($id,$statut)
+        {
+            $sql = "UPDATE sujet
+            SET closed = :statut
+            WHERE id = :id ";  
+
+            $arg= ["id" => $id,
+                    "statut" => $statut ];
+
+            return self::update($sql,$arg);
         }
 
     }

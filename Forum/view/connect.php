@@ -1,4 +1,4 @@
-<form action="?redir=connect" method="post">
+<form action="?redir=connect&ctrl=security" method="post">
     <h3>S'identifier</h3>
     <h4><?php 
         if(!empty($_GET))

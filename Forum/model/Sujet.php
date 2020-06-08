@@ -5,11 +5,12 @@
 
     class Sujet extends AbstractEntity
     {
-        private $id_sujet;
+        private $id;
         private $titresujet;
         private $datesujet;
         private $closed;
         private $membre_id;
+        private $nbmessage;
 
 
         public function __construct($data){
@@ -23,9 +24,9 @@
         /**
          * Get the value of id_sujet
          */ 
-        public function getId_sujet()
+        public function getId()
         {
-                return $this->id_sujet;
+                return $this->id;
         }
 
         /**
@@ -33,9 +34,9 @@
          *
          * @return  self
          */ 
-        public function setId_sujet($id_sujet)
+        public function setId($id)
         {
-                $this->id_sujet = $id_sujet;
+                $this->id = $id;
 
                 return $this;
         }
@@ -130,6 +131,26 @@
             $date = strtotime( $this->datesujet);
             $datef = "Le ".strftime('%d %B %Y à %R',$date);
             return $datef;
+        }
+
+        /**
+         * Get the value of membre_id
+         */ 
+        public function getNbmessage()
+        {
+                return $this->nbmessage;
+        }
+
+        /**
+         * Set the value of membre_id
+         *
+         * @return  self
+         */ 
+        public function setNbmessage($nbmessage)
+        {
+                $this->nbmessage = $nbmessage;
+
+                return $this;
         }
     }
        

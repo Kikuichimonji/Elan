@@ -5,45 +5,9 @@
     use Model\MembreManager;
     use Model\SujetManager;
     use Model\MessageManager;
-    use App\Router;
+    use App\Routeur;
 
-    class Security{
-
-        public function index()
-        {
-            $result = "connect";
-            return ["view" => $result];
-        }
-
-        public function forum()
-        {
-            $result = "forum";
-            return ["view" => $result];
-        }
-
-        public function sujet()
-        {
-            $result = "sujet";
-            return ["view" => $result];
-        }
-
-        public function registerform()
-        {
-            $result = "register";
-            return ["view" => $result];
-        }
-
-        public function membre()
-        {
-            $result = "membre";
-            return ["view" => $result];
-        }
-
-        public function post()
-        {
-            $result = "post";
-            return ["view" => $result];
-        }
+    class SecurityController{
 
         public function connect()
         {
@@ -73,7 +37,9 @@
                                     }
 
                                     $view = "forum";
-                                    return ["view" => $view];
+                                    $ctrl = "view";
+                                    return ["view" => $view,
+                                            "ctrl" => $ctrl];
                             }
                             else
                                 header("Location: ?error=1"); //redirection vers la page d'accueil si le pass ne correspont pas
@@ -81,7 +47,7 @@
                         else   
                             header("Location: ?error=2"); //redirection vers la page d'accueil si l'utilisateur ne correspont pas
                     }
-                    catch(PDOException $e) {
+                    catch(\Exception $e) {
                         echo $e->getMessage();  //Affichage d'une erreur
                         die();  // meurt
                     }
@@ -90,7 +56,7 @@
                     header("Location: ?error=1"); // Redirection vers l'accueil si les valeurs entrées sont incorectes
             }
             else if(isset($_SESSION["user"]) || isset($_COOKIE["CookieMonster"]))
-                return ["view" => "forum"];
+                return ["view" => "forum","ctrl" => "view"];
             else
                 header("Location: ?error=0"); //Si l'utilisateur est un pirate
         }
@@ -161,9 +127,12 @@
             {
                 setcookie("CookieMonster",$value,time()-3600,"/");
             }
+            $error="";
+            if(isset($_GET["error"]))
+                $error="&error=".$_GET["error"];
             unset($_SESSION['user']);
             unset($_SESSION['token']);
-            header("Location:?redir=index");
+            header("Location:?ctrl=view&redir=index".$error);
         }
 
         public function postSujet()
@@ -176,13 +145,16 @@
                 {
                     if(strlen($f_text) > 4)
                     {
-                        $membre_id = Session::getUser()->getId_membre();
+                        $membre_id = Session::getUser()->getId();
                         $sujet = new SujetManager();
                         $message = new MessageManager();
-                        $message->addMessage($f_text,$membre_id,$sujet->addSujet($f_titre,$membre_id));
+                        $sujet_id = $sujet->addSujet($f_titre,$membre_id);
+                        $message->addMessage($f_text,$membre_id,$sujet_id);
 
-                        $view = "forum";
-                        return ["view" => $view];
+                        $view = "post";
+                        $data = $sujet_id;
+                        $ctrl = "view";
+                        Routeur::Redirect($ctrl,$view,$data);
                     }
                     else
                         header("Location: ?error=10&redir=sujet");  
@@ -198,20 +170,21 @@
         {
             if(!empty($_POST) && isset($_GET["sujet"]) && is_numeric($_GET["sujet"]))
             {
-                $f_text = trim(filter_input(INPUT_POST, "reply", FILTER_SANITIZE_STRING));
+                $f_text = trim(filter_input(INPUT_POST, "reply", FILTER_UNSAFE_RAW));
                 if(strlen($f_text) > 4)
                 {
-                    $membre_id = Session::getUser()->getId_membre();
+                    $membre_id = Session::getUser()->getId();
                     $message = new MessageManager();
                     $message->addMessage($f_text,$membre_id,$_GET["sujet"]);
                     
                     $view = "post";
-                    return ["view" => $view];
+                    $data = $_GET["sujet"];
+                    $ctrl = "view";
+                    Routeur::Redirect($ctrl,$view,$data);
                     
                 }
                 else
                     header("Location: ?error=10&redir=post&id=".$_GET["sujet"]);
-                    //var_dump(strlen($f_text)); die();
             }
             else
                 header("Location: ?error=0&redir=post&id=".$_GET["sujet"]);  
@@ -224,17 +197,21 @@
             {
                 $message = new MessageManager();
                 $post=$message->findOneById($_GET["id"]);
-                if($post == false)
+
+                if(!$post || $post->getMembre_id()->getId() != Session::getUser()->getId())
                 {
                     $view = "post";
                     return ["view" => $view];
                 }
                 else
                 {
+                    $suj = $post->getSujet_id()->getId();
                     $message->deleteMessage($_GET["id"]);
 
                     $view = "post";
-                    return ["view" => $view];  
+                    $data = $suj;
+                    $ctrl = "view";
+                    Routeur::Redirect($ctrl,$view,$data);
                 }
                 
             }
@@ -246,20 +223,72 @@
             {
                 $sujet = new SujetManager();
                 $post=$sujet->findOneById($_GET["id"]);
-                if($post == false)
-                {
-                    $view = "forum";
-                    return ["view" => $view];
-                }
-                else
+                if($post && $post->getMembre_id()->getId() == Session::getUser()->getId())
                 {
                     $sujet->deleteAllInSujet($_GET["id"]);
-                    $sujet->deleteSujet($_GET["id"]);
-                    $view = "forum";
-                    return ["view" => $view];  
+                    $sujet->deleteSujet($_GET["id"]);  
                 }
+                $view = "forum";
+                $ctrl = "view";
+                Routeur::Redirect($ctrl,$view);  
                 
             }
+        }
+        public function verSuj()
+        {
+            if(isset($_GET["id"]) && is_numeric($_GET["id"]))
+            {
+                $sujet = new SujetManager();
+                $post=$sujet->findOneById($_GET["id"]);
+                if($post && Session::getUser()->getRole() =="Admin")
+                {
+                    if($post->getClosed())
+                        $sujet->verSujet($_GET["id"],0);
+                    else
+                        $sujet->verSujet($_GET["id"],1);
+                }
+                $view = "forum";
+                $ctrl = "view";
+                Routeur::Redirect($ctrl,$view);  
+            }
+        }
+
+        public function edit(){
+            
+            if(!empty($_POST) && isset($_GET["id"]) && is_numeric($_GET["id"]))
+            {
+                $f_text = trim(filter_input(INPUT_POST, "textmessage", FILTER_UNSAFE_RAW));
+                if(strlen($f_text) > 4)
+                {
+                    $message = new MessageManager();
+                    $post=$message->findOneById($_GET["id"]);
+                    if(!$post || $post->getMembre_id()->getId() != Session::getUser()->getId())
+                    {
+                        $view = "post";
+                        return ["view" => $view];
+                    }
+                    else
+                    {
+                        $messid = $_GET["id"];
+                        $message = new MessageManager();
+                        $message->editMessage($f_text,$messid);
+                        
+                        $view = "post";
+                        $data = $message->findOneById($messid)->getSujet_id()->getId();
+                        $ctrl = "view";
+
+                        Routeur::Redirect($ctrl,$view,$data);
+                    }
+                    
+                    
+                }
+                else
+                    header("Location: ?error=10&redir=edit&id=".$_GET["sujet"]);
+            }
+            else
+                header("Location: ?error=0&redir=post&id=".$_GET["sujet"]);  
+         
+
         }
 
     }

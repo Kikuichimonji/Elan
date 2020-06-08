@@ -30,34 +30,68 @@
         }
 
         protected static function select($sql, $params = null, $multiple = true){
-            $stmt = self::$connection->prepare($sql);
-            $stmt->execute($params);
+            
+            try{
+                /*var_dump($sql);
+                var_dump($params);
+                die();*/
+                $stmt = self::$connection->prepare($sql);
+                $stmt->execute($params);
 
-            if($multiple){
-                return $stmt->fetchAll();
+                if($multiple){
+                    return $stmt->fetchAll();
+                }
+                return $stmt->fetch();
             }
-            return $stmt->fetch();
+            catch(\PDOException $e) {
+                echo $e->getMessage();  //Affichage d'une erreur
+                die();  // meurt
+            }
 
         }
 
         protected static function insert($sql, $params){
-            $stmt = self::$connection->prepare($sql);
-            return $stmt->execute($params);
+            try{
+                $stmt = self::$connection->prepare($sql);
+                return $stmt->execute($params);
+            }
+            catch(\PDOException $e) {
+                echo $e->getMessage();  //Affichage d'une erreur
+                die();  // meurt
+            }
         }
 
         protected static function insertReturn($sql, $params){
-            $stmt = self::$connection->prepare($sql);
-            $stmt->execute($params);
-            return self::$connection->lastInsertId();
+            try{
+                $stmt = self::$connection->prepare($sql);
+                $stmt->execute($params);
+                return self::$connection->lastInsertId();
+            }
+            catch(\PDOException $e) {
+                echo $e->getMessage();  //Affichage d'une erreur
+                die();  // meurt
+            }
         }
 
         protected static function update($sql, $params){
-            $stmt = self::$connection->prepare($sql);
-            return $stmt->execute($params);
+            try{
+                $stmt = self::$connection->prepare($sql);
+                return $stmt->execute($params);
+            }
+            catch(\PDOException $e) {
+                echo $e->getMessage();  //Affichage d'une erreur
+                die();  // meurt
+            }
         }
 
         protected static function delete($sql, $params){
-            $stmt = self::$connection->prepare($sql);
-            return $stmt->execute($params);
+            try{
+                $stmt = self::$connection->prepare($sql);
+                return $stmt->execute($params);
+            }
+            catch(\PDOException $e) {
+                echo $e->getMessage();  //Affichage d'une erreur
+                die();  // meurt
+            }
         }
     }

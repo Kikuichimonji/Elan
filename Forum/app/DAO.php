@@ -5,7 +5,7 @@
 
         protected static $link;
         const DB_HOST = "localhost";
-        const DB_NAME = "forum";
+        const DB_NAME = "forum_thomas";
         const DB_USER = "root";
         const DB_PASS = "";
 

@@ -24,6 +24,19 @@
             return self::insert($sql,$arg);
         }
 
+        public function editMessage($message,$id)
+        {
+            $sql = "UPDATE message
+            SET message = :message
+            WHERE id = :id ";  
+
+            $arg= ["message" => $message,
+                   "id" => $id
+                  ];
+
+            return self::update($sql,$arg);
+        }
+
 
         public function getAllMessageBySujet($sujet){
 
@@ -64,7 +77,7 @@
 
             $sql = "UPDATE message
             SET deleted = 1
-            WHERE id_message = :id ";
+            WHERE id = :id ";
             $arg= ["id" => $id];     
 
             return  self::update($sql,$arg);
@@ -73,7 +86,7 @@
         public function findOneById($id){
             $sql = "SELECT * 
                     FROM message 
-                    WHERE id_message = :id";
+                    WHERE id = :id";
             $arg= ["id" => $id];
             return self::getOneOrNullResult(
                 self::select($sql, $arg, false),

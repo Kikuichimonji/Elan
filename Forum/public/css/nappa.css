@@ -1,36 +1,43 @@
-*{
-	box-sizing: border-box;
+* {
+    box-sizing: border-box;
 }
-html, body{
+
+html,
+body {
     margin: 0;
-    font-family: "AkkuratPro",Arial,sans-serif;
+    font-family: "AkkuratPro", Arial, sans-serif;
     font-size: 14px;
 }
+
 
 /*
 //////////////////
 NAV
 //////////////////
 */
-#topnav{
+
+#topnav {
     text-align: right;
 }
-#topnav a{
+
+#topnav a {
     text-decoration: none;
-    color : 404040;
+    color: 404040;
     text-transform: uppercase;
     padding-right: 1em;
-    font-size:10px;
-    
+    font-size: 10px;
 }
-nav #logo{
+
+nav #logo {
     border: 1px solid black;
 }
-nav input{
-    width:250px;
+
+nav input {
+    width: 250px;
     padding: 0.5em;
 }
-nav #botnav{
+
+nav #botnav {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -38,32 +45,39 @@ nav #botnav{
     padding-right: 1em;
     padding-left: 1em;
 }
-nav #navlink{
+
+nav #navlink {
     display: flex;
     align-items: center;
 }
-nav #navlink img{
+
+nav #navlink img {
     margin-right: 2em;
 }
+
+
 /*
 //////////////////
 HEADER
 //////////////////
 */
-#headbar{
+
+#headbar {
     background-color: black;
-    color:white;
+    color: white;
     display: flex;
     justify-content: space-evenly;
     font-size: 12px;
     padding-top: 5px;
     padding-bottom: 5px;
 }
-#headbar a{
+
+#headbar a {
     text-decoration: none;
-    color:white;
+    color: white;
 }
-#pub{
+
+#pub {
     margin: auto;
     text-align: center;
     padding-top: 1em;
@@ -73,49 +87,58 @@ HEADER
     font-weight: bold;
     font-size: 15px;
 }
+
+
 /*
 //////////////////
 MAIN
 //////////////////
 */
-#mainform form{
+
+#mainform form {
     display: flex;
     flex-flow: column wrap;
     width: 90%;
     max-width: 600px;
     margin: auto;
     margin-top: 2em;
-
 }
-#mainform form h3{
+
+#mainform form h3 {
     font-size: 1.28em;
 }
-#mainform h4{
+
+#mainform h4 {
     margin: auto;
     color: red;
 }
-#mainform h4.titre{
+
+#mainform h4.titre {
     color: black;
 }
-#mainform form input{
+
+#mainform form input {
     padding: 8px;
-    border: 1px solid #b3b3b3 ;
+    border: 1px solid #b3b3b3;
     margin-bottom: 1em;
-    
 }
-#mainform label{
+
+#mainform label {
     color: #b3b3b3;
     font-size: 0.85em;
     line-height: 1.8;
 }
-#mainform form a{
+
+#mainform form a {
     color: black;
     font-weight: bold;
 }
-#mainform form #oubli{
+
+#mainform form #oubli {
     font-size: 0.85em;
 }
-#mainform form button{
+
+#mainform form button {
     background-color: black;
     color: white;
     padding-top: 1em;
@@ -123,56 +146,92 @@ MAIN
     font-weight: bold;
     border: none;
 }
-.insulte{
-    color:white;
+
+#mainform form .tox button {
+    background-color: white;
+    color: black;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    font-weight: bold;
+    border: none;
 }
-#mainform .check label{
+
+.insulte {
+    color: white;
+}
+
+#mainform .check label {
     color: black;
 }
-#mainform #failogin{
-    color:red;
+
+#mainform #failogin {
+    color: red;
 }
-#mainform section{
-   display: flex;
-   flex-flow: column wrap;
-   align-content: center;
+
+#mainform section {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
 }
-#mainform h1{
+
+#mainform h1 {
     margin: auto;
 }
-#mainform ul{
+
+#mainform ul {
     padding-left: 0;
-    width : 50%;
+    width: 50%;
 }
-#mainform li{
+
+#mainform li {
     list-style: none;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    
 }
-#mainform li a{
-    color : blue;
-}
-#mainform li span a{
-    color : RED;
-    padding: 1em;
 
+#mainform li a {
+    color: blue;
 }
-#mainform li a.Admin{
-    color :red;
+
+#mainform li span a {
+    color: RED;
+    padding: 1em;
+}
+
+#mainform li a.Admin {
+    color: red;
     font-weight: bold;
 }
-#mainform div.liwrap{
+
+#mainform div.liwrap {
     border: 1px solid black;
-    display:flex;
+    display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     width: 100%;
 }
-#mainform div .deleted{
+
+#mainform .deleted {
     color: gray;
     font-style: italic;
+    margin: auto;
+}
+
+#mainform p.edit {
+    color: gray;
+    font-style: italic;
+    margin: 0;
+    position: relative;
+    bottom: 0.5em;
+}
+
+#mainform .adminbox {
+    width: 50px;
+}
+
+#mainform .adminbox a {
+    padding: 5px;
 }
 
 
@@ -181,25 +240,30 @@ MAIN
 FOOTER
 //////////////////
 */
-footer{
+
+footer {
     border-top: 1px solid #ccc;
     margin-top: 2em;
     padding-top: 75px;
 }
-footer #footbar{
+
+footer #footbar {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
 }
-footer .footlink{
+
+footer .footlink {
     display: flex;
     flex-flow: column wrap;
 }
-footer h4{
+
+footer h4 {
     font-size: 1.15em;
     color: #b3b3b3;
 }
-footer a{
+
+footer a {
     text-decoration: none;
     padding-bottom: 1em;
     color: black;

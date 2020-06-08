@@ -84,40 +84,20 @@
         }
 
         public function findOneById($id){
-            $sql = "SELECT * 
-                    FROM membre 
-                    WHERE id_membre = :id";
+            $sql = "SELECT me.id,me.username,me.role,me.dateinscription, COUNT(m.id) AS nbmessage,
+                    (SELECT COUNT(s.id) 
+                    FROM membre me 
+                    INNER JOIN sujet s ON s.membre_id = me.id
+                    WHERE me.id = :id)AS nbsujet
+                    FROM membre me
+                    INNER JOIN message m ON me.id = m.membre_id
+                    WHERE me.id = :id
+                    GROUP BY me.id";
             $arg= ["id" => $id];
             return self::getOneOrNullResult(
                 self::select($sql, $arg, false),
                 self::$classname
             );
-        }
-
-        public function countMessage($id){
-
-            $sql = "SELECT COUNT(m.id_message) AS c
-                    FROM message m
-                    WHERE m.membre_id = :id";
-
-            $arg= ["id" => $id
-                  ];
-
-            return  self::select($sql,$arg, false)['c'];
-
-        }
-
-        public function countSujet($id){
-
-            $sql = "SELECT COUNT(s.id_sujet) AS c
-                    FROM sujet s
-                    WHERE s.membre_id = :id";
-
-            $arg= ["id" => $id
-                  ];
-
-            return  self::select($sql,$arg, false)['c'];
-
         }
 
     }

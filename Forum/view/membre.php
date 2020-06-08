@@ -30,8 +30,8 @@
         {
             $pseudo = $user->getUsername();
             $inscription = $user->getDateinscription();
-            $nbsujet = $membre->countSujet($_GET["id"]);
-            $nbmessage = $membre->CountMessage($_GET["id"]);;
+            $nbsujet = $user->GetNbsujet();
+            $nbmessage = $user->GetNbmessage();
         }
     } 
     else

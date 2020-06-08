@@ -5,12 +5,14 @@
 
     class Membre extends AbstractEntity
     {
-        private $id_membre;
+        private $id;
         private $username;
         private $mail;
         private $password;
         private $role;
         private $dateinscription;
+        private $nbtopic;
+        private $nbmesage;
 
 
         public function __construct($data){
@@ -23,9 +25,9 @@
         /**
          * Get the value of id_membre
          */ 
-        public function getId_membre()
+        public function getId()
         {
-                return $this->id_membre;
+                return $this->id;
         }
 
         /**
@@ -33,9 +35,9 @@
          *
          * @return  self
          */ 
-        public function setId_membre($id_membre)
+        public function setId($id)
         {
-                $this->id_membre = $id_membre;
+                $this->id = $id;
 
                 return $this;
         }
@@ -139,6 +141,46 @@
 
                 return $this;
         }
+
+        /**
+         * Get the value of dateinscription
+         */ 
+        public function getNbsujet()
+        {
+                return $this->nbsujet;
         }
+
+        /**
+         * Set the value of dateinscription
+         *
+         * @return  self
+         */ 
+        public function setNbsujet($nbsujet)
+        {
+                $this->nbsujet = $nbsujet;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of dateinscription
+         */ 
+        public function getNbmessage()
+        {
+                return $this->nbmessage;
+        }
+
+        /**
+         * Set the value of dateinscription
+         *
+         * @return  self
+         */ 
+        public function setNbmessage($nbmessage)
+        {
+                $this->nbmessage = $nbmessage;
+
+                return $this;
+        }
+}
     
        

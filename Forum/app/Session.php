@@ -31,7 +31,10 @@
                 return false;
         }
 
-        public static function setToken($code){
-            $_SESSION["token"] = $code;
+        public static function setToken(){
+            if(isset($_SESSION["token"]))
+                if($_SESSION["token"] ===null)
+                    $_SESSION["token"] = bin2hex(random_bytes(32));
         }
+
     }

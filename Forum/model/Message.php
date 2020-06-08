@@ -5,12 +5,13 @@
 
     class Message extends AbstractEntity{
 
-        private $id_message;
+        private $id;
         private $message;
         private $datemessage;
         private $membre_id;
         private $sujet_id;
         private $deleted;
+        private $dateedition;
 
         public function __construct($data){
             parent::hydrate($data, $this);
@@ -19,9 +20,9 @@
         /**
          * Get the value of id_message
          */ 
-        public function getId_message()
+        public function getId()
         {
-                return $this->id_message;
+                return $this->id;
         }
 
         /**
@@ -29,9 +30,9 @@
          *
          * @return  self
          */ 
-        public function setId_message($id_message)
+        public function setId($id)
         {
-                $this->id_message = $id_message;
+                $this->id = $id;
 
                 return $this;
         }
@@ -132,6 +133,26 @@
         public function setDeleted($deleted)
         {
                 $this->deleted = $deleted;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of Dateedition
+         */ 
+        public function getDateedition()
+        {
+                return $this->dateedition;
+        }
+
+        /**
+         * Set the value of Dateedition
+         *
+         * @return  self
+         */ 
+        public function setDateedition($dateedition)
+        {
+                $this->dateedition = $dateedition;
 
                 return $this;
         }
